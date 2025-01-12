@@ -1,0 +1,544 @@
+<!-- PHP -->
+    <!-- Zapisywanie odczytywanie i nadpisywanie pliku -->
+    <!-- Zapisywanie do pliku -->
+    <?php
+    $file = 'plik.txt';
+    $content = "To jest przykładowa zawartość.\n";
+    
+    // Otwieramy plik do zapisu (w trybie 'w' - write)
+    $handle = fopen($file, 'w');
+    
+    // Zapisujemy zawartość do pliku
+    fwrite($handle, $content);
+    
+    // Zamykamy plik
+    fclose($handle);
+    
+    echo "Zapisano do pliku.";
+    ?>
+    
+    <!-- Odczytywanie z pliku -->
+    <?php
+    $file = 'plik.txt';
+
+    // Sprawdzamy, czy plik istnieje
+    if (file_exists($file)) {
+        // Otwieramy plik do odczytu (w trybie 'r' - read)
+        $handle = fopen($file, 'r');
+
+        // Odczytujemy zawartość pliku
+        $content = fread($handle, filesize($file));
+
+        // Zamykamy plik
+        fclose($handle);
+
+        echo "Zawartość pliku: " . $content;
+    } else {
+        echo "Plik nie istnieje.";
+    }
+    ?>
+
+    <!-- Nadpisywanie pliku -->
+    <?php
+    $file = 'plik.txt';
+    $newContent = "To jest nowa zawartość.\n";
+
+    // Otwieramy plik do zapisu (w trybie 'w' - write)
+    $handle = fopen($file, 'w');
+
+    // Nadpisujemy zawartość pliku
+    fwrite($handle, $newContent);
+
+    // Zamykamy plik
+    fclose($handle);
+
+    echo "Plik został nadpisany.";
+    ?>
+
+    <!-- Zapisywanie do bazy danych przy uzyciu php -->
+    <?php
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    
+    // Pobieranie danych
+    if (isset($_POST['imie']) && isset($_POST['email'])) {
+        $imie = $_POST['imie'];
+        $email = $_POST['email'];
+    
+        // Przygotowanie i wykonanie zapytania SQL
+        $sql = "INSERT INTO uzytkownicy (imie, email) VALUES ('$imie', '$email')"; //dodawnaie do bazy
+    
+        if ($conn->query($sql) === TRUE) {
+            echo "Dane zostały zapisane pomyślnie";
+        } else {
+            echo "Błąd: " . $sql . "<br>" . $conn->error;
+        }
+    }
+    
+    // Zamknięcie połączenia
+    $conn->close();
+    ?>
+    
+    <!-- Połącz się z bazą danych w PHP -->
+        <!-- pobierze listę i wyświetli ją -->
+    <?php
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "owoce_db";
+    
+    // Tworzenie połączenia
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    
+    // Sprawdzanie połączenia
+    if ($conn->connect_error) {
+        die("Połączenie nieudane: " . $conn->connect_error);
+    }
+    
+    // Zapytanie SQL
+    $sql = "SELECT nazwa FROM owoce";
+    $result = $conn->query($sql);
+    
+    // Sprawdzanie, czy są wyniki
+    if ($result->num_rows > 0) {
+        // Wyświetlanie wyników
+        echo "<ul>";
+        while($row = $result->fetch_assoc()) {
+            echo "<li>" . $row["nazwa"] . "</li>";
+        }
+        echo "</ul>";
+    } else {
+        echo "Brak wyników";
+    }
+    
+    // Zamknięcie połączenia
+    $conn->close();
+    ?>
+
+    <!-- Pobieranie listy i wyświetlanie jej z większą ilością danych przykład 2 -->
+    $conn = new mysqli('localhost', 'root', '', 'db_name');
+    $q = "SELECT id, dane1, dane2 FROM tabela WHERE dane3 = 1";
+    $result = $conn->query($q);
+    
+    if($result->num_rows > 0){
+        echo "<ul>";
+        
+        while($row = $result->fetch_assoc()) {
+            echo $row['id'] . ". " . $row['dane1'] . ", Należą: " . $row['dane2'] . "<br>";
+        }
+        echo "</ul>";
+    }
+    else{
+        echo "Brak wyników.";
+    }
+    
+    <!-- Wyświetlanie całych tabeli z kolumnami -->
+    <?php
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "moja_baza_danych";
+
+    // Tworzenie połączenia
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Sprawdzanie połączenia
+    if ($conn->connect_error) {
+        die("Połączenie nieudane: " . $conn->connect_error);
+    }
+
+    // Zapytanie SQL
+    $sql = "SELECT * FROM produkty";
+    $result = $conn->query($sql);
+
+    // Sprawdzanie, czy są wyniki
+    if ($result->num_rows > 0) {
+        // Wyświetlanie wyników w tabeli HTML
+        echo "<table border='1'>
+                <tr>
+                    <th>ID</th>
+                    <th>Nazwa</th>
+                    <th>Cena</th>
+                    <th>Ilość</th>
+                </tr>";
+        while($row = $result->fetch_assoc()) {
+            echo "<tr>
+                    <td>" . $row["id"] . "</td>
+                    <td>" . $row["nazwa"] . "</td>
+                    <td>" . $row["cena"] . "</td>
+                    <td>" . $row["ilosc"] . "</td>
+                </tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "Brak wyników";
+    }
+
+    // Zamknięcie połączenia
+    $conn->close();
+    ?>
+
+    <!-- Pobieranie metodą GET do innego pliku i działanie na pobranych wartościach oraz wyświetlanie ich -->
+    <form method="GET" action="przyklad.php">
+        <label for="liczba1">Liczba 1:</label>
+        <input type="number" id="liczba1" name="liczba1" required><br><br>
+        <label for="liczba2">Liczba 2:</label>
+        <input type="number" id="liczba2" name="liczba2" required><br><br>
+        <input type="submit" value="Wyślij">
+    </form>
+        <!-- plik przyklad.php -->
+    <?php
+    if (isset($_GET['liczba1']) && isset($_GET['liczba2'])) {
+        $liczba1 = $_GET['liczba1'];
+        $liczba2 = $_GET['liczba2'];
+
+        // Wyświetlanie danych w postaci listy
+        echo "<h2>Podane liczby:</h2>";
+        echo "<ul>";
+        echo "<li>Liczba 1: " . htmlspecialchars($liczba1) . "</li>";
+        echo "<li>Liczba 2: " . htmlspecialchars($liczba2) . "</li>";
+        echo "</ul>";
+
+        // Obliczanie sumy
+        $suma = $liczba1 + $liczba2;
+        echo "<h2>Suma:</h2>";
+        echo "<p>Suma podanych liczb wynosi: " . htmlspecialchars($suma) . "</p>";
+    } else {
+        echo "Nie podano wszystkich danych.";
+    }
+    ?>
+
+    <!-- Pobieranie metodą GET do tego samego pliku i działanie na nim -->
+    <form method="get" action="">
+        <label for="liczba1">Liczba 1:</label>
+        <input type="number" id="liczba1" name="liczba1" required><br><br>
+        <label for="liczba2">Liczba 2:</label>
+        <input type="number" id="liczba2" name="liczba2" required><br><br>
+        <input type="submit" value="Wyślij">
+    </form>
+
+    <?php
+    if (isset($_GET['liczba1']) && isset($_GET['liczba2'])) {
+        $liczba1 = $_GET['liczba1'];
+        $liczba2 = $_GET['liczba2'];
+
+        // Wyświetlanie danych w postaci listy
+        echo "<h2>Podane liczby:</h2>";
+        echo "<ul>";
+        echo "<li>Liczba 1: " . htmlspecialchars($liczba1) . "</li>";
+        echo "<li>Liczba 2: " . htmlspecialchars($liczba2) . "</li>";
+        echo "</ul>";
+
+        // Obliczanie sumy
+        $suma = $liczba1 + $liczba2;
+        echo "<h2>Suma:</h2>";
+        echo "<p>Suma podanych liczb wynosi: " . htmlspecialchars($suma) . "</p>";
+    }
+    ?>
+
+    <!-- Pobieranie metodą POST do innego pliku i działanie na pobranych wartościach oraz wyświetlanie ich -->
+    <form method="post" action="przetwarzanie.php">
+        <label for="liczba1">Liczba 1:</label>
+        <input type="number" id="liczba1" name="liczba1" required><br><br>
+        <label for="liczba2">Liczba 2:</label>
+        <input type="number" id="liczba2" name="liczba2" required><br><br>
+        <input type="submit" value="Wyślij">
+    </form>
+        <!-- przetwarzanie.php -->
+    <?php
+    if (isset($_POST['liczba1']) && isset($_POST['liczba2'])) {
+        $liczba1 = $_POST['liczba1'];
+        $liczba2 = $_POST['liczba2'];
+    
+        // Wyświetlanie danych w postaci listy
+        echo "<h2>Podane liczby:</h2>";
+        echo "<ul>";
+        echo "<li>Liczba 1: " . htmlspecialchars($liczba1) . "</li>";
+        echo "<li>Liczba 2: " . htmlspecialchars($liczba2) . "</li>";
+        echo "</ul>";
+    
+        // Obliczanie sumy
+        $suma = $liczba1 + $liczba2;
+        echo "<h2>Suma:</h2>";
+        echo "<p>Suma podanych liczb wynosi: " . htmlspecialchars($suma) . "</p>";
+    } else {
+        echo "Nie podano wszystkich danych.";
+    }
+    ?>
+        
+    <!-- Pobieranie metodą POST do tego samego pliku i działanie na nim  -->
+    <form method="post" action="">
+        <label for="liczba1">Liczba 1:</label>
+        <input type="number" id="liczba1" name="liczba1" required><br><br>
+        <label for="liczba2">Liczba 2:</label>
+        <input type="number" id="liczba2" name="liczba2" required><br><br>
+        <input type="submit" value="Wyślij">
+    </form>
+
+    <?php
+    if (isset($_POST['liczba1']) && isset($_POST['liczba2'])) {
+        $liczba1 = $_POST['liczba1'];
+        $liczba2 = $_POST['liczba2'];
+
+        // Wyświetlanie danych w postaci listy
+        echo "<h2>Podane liczby:</h2>";
+        echo "<ul>";
+        echo "<li>Liczba 1: " . htmlspecialchars($liczba1) . "</li>";
+        echo "<li>Liczba 2: " . htmlspecialchars($liczba2) . "</li>";
+        echo "</ul>";
+
+        // Obliczanie sumy
+        $suma = $liczba1 + $liczba2;
+        echo "<h2>Suma:</h2>";
+        echo "<p>Suma podanych liczb wynosi: " . htmlspecialchars($suma) . "</p>";
+    }
+    ?>
+
+    <!-- Pobieranie metodą post bez sprawdzania w pliku na innej stronie -->
+        <!-- index.html -->
+        <form action="wyslij.php" method="POST">
+            <label for="dane1">Dane:</label><br>
+            <input name="dane1" type="number"><br>
+            <label for="dane2">Dane:</label><br>
+            <input name="dane2" type="number"><br>
+            <label for="dane3">Dane:</label><br>
+            <input name="dane3" type="text" size="100"><br>
+            <input type="reset" value="WYCZYŚĆ">
+            <input type="submit" value="ZGŁOŚ">
+        </form>
+        <!-- wyslij.php -->
+        $dane1 = $_POST['dane1'];
+        $dane2 = $_POST['dane2'];
+        $dane3 = $_POST['dane3'];
+        $czas = date('H:m:s');
+
+        $q = "INSERT INTO `TABELA` (`id`, `kolumna1`, `kolumna2`, `kolumna3`, `Czas`) VALUES (NULL, '$dane1', '$dane2', '$dane3', '$czas')";
+
+    <!-- Przesyłanie pliku i wyświetlanie go na stronie -->
+    <form method="post" action="przetwarzanie.php" enctype="multipart/form-data">
+        <label for="plik">Wybierz plik:</label>
+        <input type="file" id="plik" name="plik" required><br><br>
+        <input type="submit" value="Wyślij">
+    </form>
+    
+        <!-- przetwarzanie.php -->
+    <?php
+    if (isset($_FILES['plik'])) {
+        $plik = $_FILES['plik']['tmp_name'];
+
+        // Sprawdzanie, czy plik został przesłany
+        if (is_uploaded_file($plik)) {
+            // Odczytywanie zawartości pliku
+            $zawartosc = file_get_contents($plik);
+
+            // Wyświetlanie zawartości pliku
+            echo "<h2>Zawartość pliku:</h2>";
+            echo "<pre>" . htmlspecialchars($zawartosc) . "</pre>";
+        } else {
+            echo "Wystąpił błąd podczas przesyłania pliku.";
+        }
+    }
+    ?>
+
+    <!-- Tabela while w php -->
+    <table>
+        <tr>
+            <th>czas</th>
+            <th>kierunek</th>
+            <th>numer rejsu</th>
+            <th>status</th>
+        </tr>
+        <?php
+        $conn = mysqli_connect('localhost', 'root', '', 'moja_baza');
+        if (!$conn) {
+            die("Połączenie nieudane: " . mysqli_connect_error());
+        }
+
+        $q = "SELECT czas, kierunek, nr_rejsu, status_lotu FROM tabela ORDER BY czas ASC;";
+        $result = mysqli_query($conn, $q);
+
+        if (mysqli_num_rows($result) > 0) {
+            while($tab = mysqli_fetch_row($result)) {
+                echo "<tr><td>$tab[0]</td><td>$tab[1]</td><td>$tab[2]</td><td>$tab[3]</td></tr>";
+            }
+        } else {
+            echo "<tr><td colspan='4'>Brak wyników</td></tr>";
+        }
+        mysqli_close($conn);
+        ?>
+    </table>
+
+    <!-- Inna tabela w php -->
+    <?php
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Zapytanie SQL
+    $sql = "SELECT id, nazwa, cena FROM produkty";
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+        echo "<table border='1'>
+                <tr>
+                    <th>ID</th>
+                    <th>Nazwa</th>
+                    <th>Cena</th>
+                </tr>";
+        // Wyświetlanie danych w tabeli
+        while($row = $result->fetch_assoc()) {
+            echo "<tr>
+                    <td>" . $row["id"] . "</td>
+                    <td>" . $row["nazwa"] . "</td>
+                    <td>" . $row["cena"] . "</td>
+                </tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "Brak wyników";
+    }
+
+    // Zamknięcie połączenia
+    $conn->close();
+    ?>
+
+    <!-- Ciasteczka -->
+	<?php
+	if(isset($_COOKIE['ciasteczko'])) {
+		echo "<p><i>Powitanie ponowne</i></p>";
+	} else {
+		setcookie("ciasteczko", 1, TIME() + 7200); //zycie ciasteczka
+		echo "<p><b>Strona żywa ciasteczek</b></p>";
+	}
+	?>
+
+    <!-- Odczyt nazwy zdjęcia z bazy danych -->
+    <?php
+    // Pobieranie danych z tabeli 'images'
+    $sql = "SELECT filename FROM images";
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+        echo '<div style="display: flex; flex-wrap: wrap;">'; // Kontener na obrazy
+    
+        // Iterowanie po wynikach
+        while ($row = $result->fetch_assoc()) {
+            $filename = $row['filename'];
+            // Ścieżka do obrazu
+            $imagePath = "images/" . $filename;
+    
+            // Wyświetlanie obrazka
+            echo '<div style="margin: 10px;">';
+            echo "<img src='$imagePath' alt='$filename' style='width: 100px; height: auto;'>";
+            echo '</div>';
+        }
+        echo '</div>'; // Koniec kontenera na obrazy
+    } else {
+        echo "Brak obrazów do wyświetlenia.";
+    }
+    
+    // Zamknięcie połączenia z bazą danych
+    $conn->close();
+    ?>
+
+    <!-- Wyświetanie zdjęcia opisu nazwy ceny z bazy danych w specjalnej kolejności -->
+    <?php
+	$conn = mysqli_connect('localhost', 'root', '', 'db_name');
+	$q = "SELECT nazwa, ilosc, opis, cena, zdjecie FROM tabela WHERE Rodzaje_id IN (1, 2);";
+	$result = mysqli_query($conn, $q);
+	while($tab = mysqli_fetch_row($result)) {
+		echo "<div class='produkt'>
+		<img src='$tab[4]' alt='warzywniak' />
+		<h5>$tab[0]</h5>
+		<p>opis: $tab[2]</p>
+		<p>na stanie: $tab[1]</p>
+		<h2>$tab[3] zł</h2>
+		</div>";
+	}
+	?>
+
+    <!-- Wyświetlanie pojedyńczej wartości z bazy -->
+        <!-- sposob 1 -->
+    // Pobieranie imienia osoby o ID 3
+    $sql = "SELECT imie FROM osoby WHERE id = 3";
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+        // Wyświetlanie imienia osoby
+        $row = $result->fetch_assoc();
+        echo $row["imie"];
+    } else {
+        echo "Brak wyników";
+    }
+        <!-- sposob 2 -->
+	$q = "SELECT imie FROM dane;";
+	$result = mysqli_query($conn, $q);
+	while($tab = mysqli_fetch_row($result)) {
+		echo "Imie: $tab[0]";
+	}
+
+    <!-- Logowanie -->
+    if(!empty($_POST['login']) && !empty($_POST['haslo'])) {
+        $login = $_POST['login'];
+        $haslo = $_POST['haslo'];
+        
+        $kw = "SELECT login FROM uzytkownicy WHERE login = '$login';";
+        $res = mysqli_query($con, $kw);
+        if(mysqli_num_rows($res) == 1) {
+            $kw = "SELECT haslo FROM uzytkownicy WHERE login = '$login';";
+            $res = mysqli_query($con, $kw);
+            while($tab = mysqli_fetch_row($res)) {
+                $szyfr = sha1($haslo);
+                if($szyfr == $tab[0]) {
+                    $kw = "SELECT u.login, d.rok_urodz, d.przyjaciol, d.hobby, d.zdjecie FROM uzytkownicy u INNER JOIN dane d ON u.id = d.id WHERE u.login = '$login';";
+                    $res = mysqli_query($con, $kw);
+                    while($tab = mysqli_fetch_row($res)) {
+                        echo "<div class='wizytowka'>";
+                        echo "<img src='$tab[4]' alt='osoba' />";
+                        $wiek = DATE("Y") - $tab[1];
+                        echo "<h4>$tab[0] ($wiek)</h4>";
+                        echo "<p>hobby: $tab[3]</p>";
+                        echo "<h1><img src='icon-on.png' /> $tab[2]</h1>";
+                        echo "<a href='dane.html'><button type='button'>Więcej informacji</button></a>";
+                        echo "</div>";
+                    }
+                } else echo "hasło nieprawidłowe";
+            }
+            
+        } else echo "login nie istnieje";
+    }
+    mysqli_close($con);
+    ?>
+    <!-- Szyfrowanie -->
+    // Szyfrowanie hasła
+    $hashedPassword = sha1($plainPassword);
+    // Przygotowanie zapytania SQL
+    $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+    $stmt->bind_param("ss", $user, $hashedPassword);
+    // Wykonanie zapytania
+    if ($stmt->execute()) {
+        echo "Użytkownik został zarejestrowany pomyślnie.";
+    } else {
+        echo "Błąd: " . $stmt->error;
+    }
+    $stmt->close();
+    $conn->close();
+    ?>
+        <!-- Weryfikacja hasła -->
+    // Przygotowanie danych logowania
+    $user = 'exampleUser';
+    $plainPassword = 'examplePassword';
+
+    // Szyfrowanie hasła
+    $hashedPassword = sha1($plainPassword);
+
+    // Przygotowanie zapytania SQL do pobrania hasła
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ? AND password = ?");
+    $stmt->bind_param("ss", $user, $hashedPassword);
+
+    // Wykonanie zapytania
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        echo "Zalogowano pomyślnie.";
+    } else {
+        echo "Nieprawidłowe dane logowania.";
+    }

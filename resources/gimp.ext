@@ -1,0 +1,6 @@
+kadrowanie: Narzędzia -> Narzędzia przekształcania -> Kadrowanie
+usuwanie tła: otwórz plik -> dodaj kanał alfa -> edycja -> wyczyść
+odbicie wzdłuż osi ox: Narzędzia -> Narzędzia przekształcania -> Odbicie
+rozmycie Gaussa: lewy przycisk myszy na zdiecie -> Filtry -> Rozmycie -> Rozrycie Gaussam
+gif dwa oprazki: dwie warstwy jeden z jednym obrazem drugi z drugim oba widoczne -> plik -> weksposrtuj jako gif -> przycinamy -> klikamy jako animacja -> trakowanie klatek(jedna klatka na warstwe)
+kadrowanie 1:1 : narzedzia -> Narzędzia przekształcania -> Kadrowanie -> po lewej pod slałe piszemy 1:1 i zaznaczamy po lewej od stałe checbox i kadrujemy zdiecie -> obraz -> skaluj obraz 

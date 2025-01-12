@@ -1,0 +1,423 @@
+<!-- JS -->
+    <!-- Wstawianie JavaScript do HTML -->
+    <h1>Witaj, świecie!</h1> 
+    <script>
+        document.write("To jest tekst wygenerowany przez JavaScript."); 
+    </script>
+
+    <!-- Zmienne -->
+    var zmienna1 = "To jest zmienna"; 
+    let zmienna2 = 10; 
+    const zmienna3 = true;
+
+    <!-- Typy danych -->
+    String (ciąg znaków)
+    Number (liczba)
+    Boolean (wartość logiczna)
+    Array (tablica)
+    Object (obiekt)
+    Null (wartość pusta)
+    Undefined (niezdefiniowana)
+
+    <!-- Operatory arytmetyczne -->
+    <script>
+        var x = 5;
+        var y = 2;
+        var suma = x + y;
+        var roznica = x - y;
+        var iloczyn = x * y;
+        var iloraz = x / y;
+        document.write("Suma: " + suma + "<br>");
+        document.write("Różnica: " + roznica + "<br>");
+        document.write("Iloczyn: " + iloczyn + "<br>");
+        document.write("Iloraz: " + iloraz + "<br>");
+    </script>
+
+    <!-- Operatory porównania -->
+    <script>
+        var a = 5;
+        var b = 10;
+        var rowne = (a == b);
+        var wieksze = (a > b);
+        var mniejsze = (a < b);
+        var nierowne = (a != b);
+        document.write("Czy a jest równe b: " + rowne + "<br>");
+        document.write("Czy a jest większe od b: " + wieksze + "<br>");
+        document.write("Czy a jest mniejsze od b: " + mniejsze + "<br>");
+        document.write("Czy a jest różne od b: " + nierowne + "<br>");
+    </script>
+
+    <!-- Operatory logiczne -->
+    <script>
+        var prawda = true;
+        var falsz = false;
+        var wynikAnd = prawda && falsz;
+        var wynikOr = prawda || falsz;
+        var wynikNot = !prawda;
+        document.write("Wynik operacji AND: " + wynikAnd + "<br>");
+        document.write("Wynik operacji OR: " + wynikOr + "<br>");
+        document.write("Wynik operacji NOT: " + wynikNot + "<br>");
+    </script>
+    
+    <!-- Funkcje -->
+    function powitanie(imie) {
+        return "Witaj, " + imie + "!";
+    }
+    console.log(powitanie("Jan"));
+
+    <!-- Pętle -->
+        <!-- Przykład pętli for -->
+    for (let i = 1; i <= 10; i++) {
+        console.log("Liczba: " + i);
+    }
+
+    <!-- Jak to działa: -->
+    for to słowo kluczowe używane do deklaracji pętli.
+    let i = 1 inicjalizuje zmienną i z wartością początkową 1.
+    i <= 10 to warunek, który musi być spełniony, aby pętla kontynuowała działanie. Pętla będzie działać, dopóki i jest mniejsze lub równe 10.
+    i++ zwiększa wartość i o 1 po każdej iteracji pętli.
+    console.log("Liczba: " + i) wyświetla aktualną wartość i w konsoli.
+    
+        <!-- Przykład pętli while -->
+    let j = 1;
+    while (j <= 10) {
+        console.log("Liczba: " + j);
+        j++;
+    }
+
+    <!-- Jak to działa: -->
+    while to słowo kluczowe używane do deklaracji pętli.
+    let j = 1 inicjalizuje zmienną j z wartością początkową 1.
+    while (j <= 10) to warunek, który musi być spełniony, aby pętla kontynuowała działanie. Pętla będzie działać, dopóki j jest mniejsze lub równe 10.
+    console.log("Liczba: " + j) wyświetla aktualną wartość j w konsoli.
+    j++ zwiększa wartość j o 1 po każdej iteracji pętli.
+    
+    <!-- Instrukcje warunkowe -->
+    let wiek = 18;
+    if (wiek >= 18) {
+        console.log("Jesteś pełnoletni.");
+    } else {
+        console.log("Jesteś niepełnoletni.");
+    }
+
+    <!-- Manipulacja DOM -->
+    document.getElementById("mojElement").innerHTML = "Nowa zawartość";
+
+    <!-- Obsługa zdarzeń -->
+        <!-- addEvenetListener -->
+    document.getElementById("mojPrzycisk").addEventListener("click", function() {
+        alert("Przycisk został kliknięty!");
+    });
+
+        <!-- onclick -->
+    <h1 id="naglowek">Kliknij przycisk, aby zmienić ten tekst</h1> 
+    <button id="przycisk">Kliknij mnie</button>
+    <script> // Dodawanie zdarzenia onclick do przycisku 
+        document.getElementById("przycisk").onclick = function() { 
+            document.getElementById("naglowek").innerHTML = "Tekst został zmieniony!"; 
+        };
+    </script>
+
+        <!-- onclick skrócone -->
+    id.onclick = () => {
+        ...
+    }
+
+    <!-- ParseInt -->
+    let liczba1 = parseInt("123"); // Zwraca 123
+    let liczba2 = parseInt("123abc"); // Zwraca 123
+    let liczba3 = parseInt("abc123"); // Zwraca NaN (Not a Number)
+    let liczba4 = parseInt("1010", 2); // Zwraca 10 (interpretacja jako liczba binarna)
+
+    <!-- ParseFloat -->
+    let liczba1 = parseFloat("123.45"); // Zwraca 123.45
+    let liczba2 = parseFloat("123.45abc"); // Zwraca 123.45
+    let liczba3 = parseFloat("abc123.45"); // Zwraca NaN (Not a Number)
+    
+    <!-- Generowanie liczb -->
+    Math.random() generuje liczbę zmiennoprzecinkową z przedziału od 0 (włącznie) do 1 (wyłącznie).
+    Math.floor() zaokrągla liczbę w dół do najbliższej liczby całkowitej.
+    Math.random() * 100 daje liczbę z przedziału od 0 do 99.999...
+
+    Przykład:
+    function generujLiczbe() { 
+        return Math.floor(Math.random() * 100) + 1; 
+    } 
+    let liczba = generujLiczbe(); 
+    console.log("Wygenerowana liczba: " + liczba);
+
+    <!-- Dodawanie -->
+    function dodawanie(){
+        <!-- sposob 1 -->
+        let a = parseInt(la.value);
+        let b = parseInt(lb.value);
+        let wynik = (a + b);
+        odp.innerHTML = wynik;
+
+        <!-- sposob 2 -->
+        let a = la.value;
+        let b = lb.value;
+        let wynik = (Number(a) + Number(b));
+        odp.innerHTML = wynik;
+    }
+    
+    <!-- Odejmowanie -->
+    function odejmowanie(){
+        let a = la.value;
+        let b = lb.value;
+        let wynik = (a - b);
+        odp.innerHTML = wynik;
+    }
+
+    <!-- Mnożenie -->
+    function mnozenie(){
+        let a = la.value;
+        let b = lb.value;
+        let wynik = (a * b);
+        odp.innerHTML = wynik;
+    }
+
+    <!-- Dzielenie -->
+    function dzielenie(){
+        let a = la.value;
+        let b = lb.value;
+        let wynik = (a / b);
+        odp.innerHTML = wynik;
+    }
+
+    <!-- Potęgowanie -->
+    function potegowanie(){
+        let a = la.value;
+        let b = lb.value;
+        let wynik = (a ** b);
+        odp.innerHTML = wynik;
+    }
+
+    <!-- stylowanie tekstu -->
+    <p id="tekst">To jest przykładowy tekst.</p>
+    <button onclick="zmienStyl()">Zmień styl tekstu</button>
+    <script>
+        function zmienStyl() {
+            let tekst = document.getElementById("tekst");
+            tekst.style.color = "red";
+            tekst.style.fontSize = "20px";
+            tekst.style.fontWeight = "bold";
+        }
+    </script>
+
+    <!-- stylowanie tła -->
+    <button onclick="zmienKolor()">Zmień kolor tła</button> 
+    <script> 
+        function zmienKolor() { 
+            document.body.style.backgroundColor = "lightblue"; 
+        } 
+    </script>
+
+<!-- Dokumentacja -->
+Pobieranie elementów w JavaScript
+getElementById - służy do pobierania elementów po ich unikalnym ID.
+const element = document.getElementById("lewy");
+
+
+getElementsByClassName - pobiera wszystkie elementy z podaną klasą i zwraca wynik jako dynamiczną kolekcję.
+const elements = document.getElementsByClassName("square");
+
+
+Czym jest dynamiczna kolekcja?
+Jeśli dodamy jakiś element za pomocą JavaScriptu, to metoda obsługujące dynamiczne (inaczej żywe) kolekcje go wyłapie.
+
+getElementsByName - pobiera wszystkie elementy na podstawie wartości atrybutu name. Stosowane zwykle w specyficznych przypadkach dla formularzy.
+const elements = document.getElementsByName("username");
+
+
+getElementsByTagName - pobiera wszystkie elementy o podanej nazwie znacznika i zwraca wynik w postaci dynamicznej kolekcji.
+const elements = document.getElementsByTagName("p");
+
+
+querySelector - analizuje kod od góry do dołu do momentu znalezienia pierwszego dopasowania, reszta jest pomijana. Używamy tego tak samo jakbyśmy to robili w CSS.
+const element1 = document.querySelector("#check-button"); 
+const element2 = document.querySelector(".wrapper"); 
+const element3 = document.querySelector("p"); 
+const element4 = document.querySelector(".container .check-button");
+
+
+querySelectorAll - działa tak samo jak querySelector, tylko, że pobiera wszystkie elementy z danym dopasowaniem.
+const elements = document.querySelectorAll(".bg-color-red");
+
+
+Problem z metodami querySelector: Mimo, że są bardzo uniwersalne, to nie obsługują dynamicznych kolekcji. Dodatkowo są wolniejsze niż ich starsze odpowiedniki, ale w większości przypadków różnica jest niezauważalna i można uznać to jako pomijalną wartość.
+
+Przykłady rzeczy, do których możemy się odnieść:
+● textContent - modyfikacja zawartości tekstowej.
+● innerHTML - modyfikacja wewnętrznego HTML.
+
+const element = document.querySelector("span").textContent="Ala ma kota";
+
+Stylizowanie elementów w JavaScript
+Po pierwsze - style składające się z więcej niż jednego słowa, np. font-size czy background-color w JS musimy zapisać jako fontSize i analogicznie backgroundColor.
+
+Poniższe style dodawane są liniowo, czyli bezpośrednio wewnątrz znacznika i ogólnie dobrą praktyką jest niestylizowanie tak w JS, bo od tego jest CSS, jednak nie jest to niepoprawne.
+const sekcja = document.querySelector("#lewa-sekcja");
+
+sekcja.style.backgroundColor="lightblue";
+sekcja.style.padding="20px 30px";
+sekcja.style.borderRadius="8px";
+sekcja.style.width="250px";
+
+Możemy to też zrobić w inny sposób, czyli style zapisać w CSS i w JavaScripcie dodać tylko odpowiednią klasę do elementu.
+const sekcja = document.querySelector("#lewa-sekcja");
+
+sekcja.classList.add("test");
+
+.test {
+    background-color: lightblue;
+    padding: 20px 30px;
+    border-radius: 8px;
+    width: 250px;
+}
+
+Dodawanie elementów w JavaScript
+● Rodzic - element wewnątrz którego znajdują się inne znaczniki.
+● Dziecko - element znajdujący się wewnątrz rodzica.
+
+Powyższe nazewnictwo można rozwijać, np. dziadek, pradziadek itp.
+
+Tworzenie i dodawanie elementów:
+● Do tworzenia użyjemy metody createElement.
+● Do dodawania użyjemy metody append lub appendChild.
+
+Jaka jest różnica między append i appendChild?
+● appendChild - starsza metoda, nie obsługuje tekstu i nie można dodawać wielu elementów jednocześnie.
+● append - nowsza metoda, robi to samo co appendChild, ale eliminuje te dwa ograniczenia.
+
+Metody append i appendChild mają za zadanie dodawać dziecko do rodzica.
+
+Przykład: Dodajemy przycisk z napisem "Kliknij mnie" do lewej sekcji.
+const sekcja = document.querySelector("#lewa-sekcja");
+const button = document.createElement("button");
+
+button.textContent="Kliknij mnie";
+sekcja.append(button);
+
+Mimo, że append obsługuje tekst i powyższy przykład możemy rozwiązać w poniższy sposób, to zawsze lepiej po prostu użyć textContent, jeśli robimy coś z tekstem.
+const sekcja = document.querySelector("#lewa-sekcja");
+const button = document.createElement("button");
+
+sekcja.append(button, "Kliknij mnie");
+
+Nasłuchiwanie zdarzeń w JavaScript
+Metoda addEventListener umożliwia nasłuchiwanie na zdarzenia wykonywane przez użytkownika na stronie, takie jak kliknięcia, najechanie kursorem, scrollowanie czy wpisywanie tekstu. Takich zdarzeń jest ogrom i możemy w JavaScripcie zareagować praktycznie na wszystko, co zrobi użytkownik.
+
+Listenery możemy nadawać na obiekt document, window albo na dowolny element na stronie.
+
+Przyjmuje trzy argumenty:
+● event - typ zdarzenia jaki chcemy nasłuchiwać.
+● funkcja - funkcja, którą chcemy wywołać.
+● opcje - opcjonalna dodatkowa konfiguracja, np. czy listener ma być usunięty od razu po jego wywołaniu.
+
+Dobre praktyki: W miarę możliwości powinno się unikać funkcji anonimowych, czyli takich bez nazwy, a listenery powinno się umieszczać na samym końcu kodu.
+
+Przykład: Gdy klikniemy przycisk wykona się instrukcja z funkcji hello.
+const button = document.querySelector(".przycisk");
+
+const hello = () => {
+    const name = prompt("Jak się nazywasz?");
+    alert(`Witaj ${name}`);
+};
+
+button.addEventListener("click", hello);
+
+Powyższa funkcja hello nie przyjmuje żadnych argumentów, bo nie jest to konieczne, ale jeśli będziemy chcieli np. sprawdzić czy naciśnięto jakiś klawisz, to musimy to przechować w funkcji.
+const kliknietyPrzycisk = (przycisk) => {
+    if (przycisk.key === "b") {
+        console.log("Naciśnięto przycisk b");
+    }
+};
+
+document.addEventListener("keydown", kliknietyPrzycisk);
+
+Układanie elementów na stronie
+1) Floaty: Układanie elementów przez floaty jest przestarzałe.
+2) Używanie display: block i display: inline-block: Ustalamy czy element ma być wyświetlany pionowo czy poziomo, jednak ma to swoje wady.
+3) Flexbox lub Grid - najlepsze podejście.
+
+Floaty i displaye nie są responsywne i generują problemy, np. displaye zostawiają odstępy między elementami przez co nie są do końca wyrównane, a floaty dodatkowo są mało intuicyjne w bardziej złożonych layotach i potrzebują komplikować dodatkowo kod poprzez użycie pozycji. Za to Flexbox lub Grid to nowoczesne i responsywne rozwiązanie.
+
+Fajne strony do ćwiczeń:
+● https://flexboxfroggy.com/#pl - dla flexboxa
+● https://cssgridgarden.com/#pl - dla grida
+
+Flexbox działa w ten sposób, że układa elementy względem rodzica, czyli zawsze musi być jakiś element nadrzędny. Poniżej przykład.
+<main>
+    <section id="lewy"></section>
+    <section id="srodkowy"></section>
+    <section id="prawy"></section>
+</main>
+
+main {
+    display: flex;
+    flex-direction: row; /* Ułoży lewy, środkowy i prawy obok siebie */
+}
+
+Wartości właściwości flex-direction:
+● flex-direction: row - układa elementy poziomo.
+● flex-direction: column - układa elementy pionowo.
+● flex-direction: row-reverse - układa elementy poziomo i dodatkowo sprawia, że ułożą się w odwrotnej kolejności.
+● flex-direction: column-reverse - układa elementy pionowo i dodatkowo sprawia, że ułożą się w odwrotnej kolejności.
+
+Bazując na powyższym przykładzie, jeśli będziemy chcieli, aby np. prawy wyświetlił się pionowo, to ustawiamy dodatkowo właściwość flex-direction: column dla sekcji o id prawy.
+
+Sam Flexbox jest bardziej zaawansowany, ale umiejętność posługiwania się flex-direction jest kluczową kwestią i pod egzamin raczej powinno wystarczyć. 
+
+Pozycje w CSS
+1) static - domyślna dla każdego elementu.
+2) relative - element możemy przesunąć względem całej strony i wygląda jakby się ruszył, ale dla pozostałych elementów zajmuje to samo miejsce.
+3) absolute - element możemy przesunąć względem najbliższego rodzica z pozycją inną niż static. Jeśli taki nie istnieje, to względem całej strony.
+4) fixed - element możemy przesunąć względem całej strony + przykleja się do strony i podczas przewijania nadal go widać.
+5) sticky - element na początku zachowuje się normalnie, ale kiedy przewijamy stronę i dojdziemy do określonego miejsca, zatrzymuje się tam i przykleja.
+
+Dwa typowe scenariusze wykorzystanie pozycji:
+● fixed do nagłowków lub paneli bocznych
+● relative w parze z absolute 
+
+Dla wszystkich pozycji (poza static) mamy do dyspozycji kilka właściwości CSS:
+● top - ustala odstęp od górnej krawędzi.
+● bottom - ustala odstęp od dolnej krawędzi.
+● left - ustala odstęp od lewej krawędzi.
+● right - ustala odstęp od prawej krawędzi.
+● z-index - ustala warstwę, na której znajduje się element i tego stylu możemy używać też poza pozycjami (można to porównać do warstw w gimpie czy photoshopie).
+
+Przykład współpracy relative z absolute
+<section class="wrapper">
+    <div class="wrapper__box">absolute</div>
+</section>
+
+/* Umieszcamy .wrapper__box w prawym górnym rogu względem .wrapper */
+
+.wrapper {
+    position: relative;
+    width: 500px;
+    min-height: 300px;
+    border: 1px solid black;
+}
+
+.wrapper__box {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+Przykład użycia pozycji sticky
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<div class="box">jestem sticky</div>
+
+/* Gdy .box osiągnie zerowy odstęp od górnej krawędzi, to dopiero wtedy się przyklei */
+
+body {
+    height: 3000px;
+}
+
+.box {
+    position: sticky;
+    top: 0;
+}

@@ -1,0 +1,414 @@
+<!-- HTML -->
+
+    <!-- Linkowanie -->
+    <a href="https://www.example.com"></a>
+
+    <!-- Obrazki -->
+    <img src="obrazek.jpg" alt="Opis obrazka">
+
+    <!-- Listy ze znakami -->
+    <ul>
+        <li>Element listy 1</li>
+        <li>Element listy 2</li>
+        <li>Element listy 3</li>
+    </ul>
+    
+    <!-- Listy z cyframi itp -->
+    <ol>
+        <li>Element listy 1</li>
+        <li>Element listy 2</li>
+        <li>Element listy 3</li>
+    </ol>
+    
+    <!-- Typy list do ol i ul -->
+    list-style-type:
+    disc: Domyślny styl dla list nieuporządkowanych (kropka).
+    circle: Okrągły znacznik.
+    square: Kwadratowy znacznik.
+    decimal: Liczby arabskie (1, 2, 3, ...).
+    decimal-leading-zero: Liczby arabskie z wiodącym zerem (01, 02, 03, ...).
+    lower-roman: Małe cyfry rzymskie (i, ii, iii, ...).
+    upper-roman: Duże cyfry rzymskie (I, II, III, ...).
+    lower-alpha: Małe litery alfabetu (a, b, c, ...).
+    upper-alpha: Duże litery alfabetu (A, B, C, ...).
+    lower-greek: Małe litery greckie (α, β, γ, ...).
+    lower-latin: Małe litery łacińskie (a, b, c, ...).
+    upper-latin: Duże litery łacińskie (A, B, C, ...).
+    armenian: Numeracja ormiańska.
+    georgian: Numeracja gruzińska (an, ban, gan, ...).
+    none: Brak znacznika listy.
+
+    <!-- Tabele -->
+    <table border="1">
+        <tr>
+            <th>Nagłówek 1</th>
+            <th>Nagłówek 2</th>
+        </tr>
+        <tr>
+            <td>Komórka 1</td>
+            <td>Komórka 2</td>
+        </tr>
+        <tr>
+            <td>Komórka 3</td>
+            <td>Komórka 4</td>
+        </tr>
+    </table>
+
+    <!-- Inne tabele (z colspan i rowspan) -->
+    rowspan: Łączy komórki w pionie (wiersze). Na przykład, rowspan="2" oznacza, że komórka zajmuje miejsce dwóch wierszy.
+    colspan: Łączy komórki w poziomie (kolumny). Na przykład, colspan="2" oznacza, że komórka zajmuje miejsce dwóch kolumn.
+    
+    <style>
+        table {
+            border-collapse: collapse;
+            /* border-collapse: collapse; 
+            collapse; Granice są łączone w jedną. Jeśli dwie komórki mają granice, które się stykają, będą one renderowane jako jedna granica. To sprawia, że tabela wygląda bardziej zwarto.
+            separate; (domyślne) Granice komórek są renderowane oddzielnie. Każda komórka ma swoje własne granice, co może sprawić, że tabela wygląda na bardziej rozproszoną. */
+        }
+    </style>
+    <table>
+        <tr>
+            <th rowspan="2">Nagłówek 1</th>
+            <th colspan="2">Nagłówek 2</th>
+            <th rowspan="2">Nagłówek 3</th>
+        </tr>
+        <tr>
+            <th>Podnagłówek 1</th>
+            <th>Podnagłówek 2</th>
+        </tr>
+        <tr>
+            <td rowspan="2">Dane 1</td>
+            <td>Podane 1</td>
+            <td>Podane 2</td>
+            <td rowspan="2">Dane 3</td>
+        </tr>
+        <tr>
+            <td colspan="2">Podane 3</td>
+        </tr>
+    </table>
+
+    <!-- Formularze -->
+    <form action="/plik lub folder" method="post">
+        <label for="imie">Imię:</label>
+        <input type="text" id="imie" name="imie"><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+        <input type="submit" value="Wyślij">
+    </form>
+
+    <!-- Typy input -->
+    <form action="/plik lub folder" method="post">
+        <label for="tekst">Tekst:</label>
+        <input type="text" id="tekst" name="tekst"><br><br>
+
+        <label for="haslo">Hasło:</label>
+        <input type="password" id="haslo" name="haslo"><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+
+        <label for="liczba">Liczba:</label>
+        <input type="number" id="liczba" name="liczba"><br><br>
+
+        <label for="telefon">Telefon:</label>
+        <input type="tel" id="telefon" name="telefon"><br><br>
+
+        <label for="url">URL:</label>
+        <input type="url" id="url" name="url"><br><br>
+
+        <label for="szukaj">Szukaj:</label>
+        <input type="search" id="szukaj" name="szukaj"><br><br>
+
+        <label for="data">Data:</label>
+        <input type="date" id="data" name="data"><br><br>
+
+        <label for="data_czas">Data i czas:</label>
+        <input type="datetime-local" id="data_czas" name="data_czas"><br><br>
+
+        <label for="czas">Czas:</label>
+        <input type="time" id="czas" name="czas"><br><br>
+
+        <label for="miesiac">Miesiąc:</label>
+        <input type="month" id="miesiac" name="miesiac"><br><br>
+
+        <label for="tydzien">Tydzień:</label>
+        <input type="week" id="tydzien" name="tydzien"><br><br>
+
+        <label for="kolor">Kolor:</label>
+        <input type="color" id="kolor" name="kolor"><br><br>
+
+        <label for="zgoda">Zgoda:</label>
+        <input type="checkbox" id="zgoda" name="zgoda"><br><br>
+
+        <!-- textarea -->
+            <!-- maxlength oznacza ilosc liter jakie mozemy uzyc -->
+        <textarea id="id" name="nazwa" rows="4" cols="50" maxlength="20">tekst</textarea>
+
+        <!-- Wybieranie z listy rozwijanej -->
+        <label for="wybierz">Wybierz owoc:</label> 
+        <select id="wybierz" name="wybierz"> 
+            <option value="jablko">Jabłko</option> 
+            <option value="banan">Banan</option> 
+            <option value="pomarancza">Pomarańcza</option> 
+            <option value="gruszka">Gruszka</option> 
+        </select>
+        <label>Opcje:</label>
+        <input type="radio" name="opcja" value="1"> Opcja 1
+        <input type="radio" name="opcja" value="2"> Opcja 2<br><br>
+
+        <label for="plik">Plik:</label>
+        <input type="file" id="plik" name="plik"><br><br>
+
+        <input type="hidden" name="ukryte" value="wartosc">
+
+        <input type="submit" value="Wyślij">
+        <input type="reset" value="Resetuj">
+        <input type="button" value="Przycisk">
+    </form>
+        
+    <!-- Wysyłanie poczty -->
+    <a href="mailto:poczta@wp.pl">Wyślij e-mail</a>
+
+    <!-- Link do numeru telefonu -->
+    <a href="tel:+48123456789">Zadzwoń do nas</a>
+
+    <!-- Link do wiadomości SMS -->
+    <a href="sms:+48123456789">Wyślij SMS</a>
+
+    <!-- Pobieranie pliku -->
+    <a href="plik.pdf" download>Pobierz plik PDF</a>
+
+    <!-- Otwieranie linku w nowej karcie -->
+    <a href="https://www.example.com" target="_blank">Odwiedź Example.com</a>
+
+    <!-- Zakotwiczenie -->
+    <a href="#sekcja1">Przejdź do sekcji 1</a>
+
+        <!-- Gdzieś dalej na stronie -->
+    <h2 id="sekcja1">Sekcja 1</h2>
+    <p>Treść sekcji 1...</p>
+
+    <!-- Osadzenie Video -->
+    <video width="320" height="240" controls>
+        <source src="film.mp4" type="video/mp4">
+        Twoja przeglądarka nie obsługuje elementu wideo.
+    </video>
+
+    <!-- Osadzanie audio -->
+    <audio controls>
+        <source src="muzyka.mp3" type="audio/mpeg">
+        Twoja przeglądarka nie obsługuje elementu audio.
+    </audio>
+
+<!-- CSS -->
+/* <length> | <length> | <length> | <length> | <color> */
+box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 20%);
+
+border-style: ;
+dotted - Defines a dotted border
+dashed - Defines a dashed border
+solid - Defines a solid border
+double - Defines a double border
+groove - Defines a 3D grooved border. The effect depends on the border-color value
+ridge - Defines a 3D ridged border. The effect depends on the border-color value
+inset - Defines a 3D inset border. The effect depends on the border-color value
+outset - Defines a 3D outset border. The effect depends on the border-color value
+none - Defines no border
+hidden - Defines a hidden border
+
+display: ;
+inline	Displays an element as an inline element (like <span>). Any height and width properties will have no effect. This is default.	
+block	Displays an element as a block element (like <p>). It starts on a new line, and takes up the whole width	
+contents	Makes the container disappear, making the child elements children of the element the next level up in the DOM	
+flex	Displays an element as a block-level flex container	
+grid	Displays an element as a block-level grid container	
+inline-block	Displays an element as an inline-level block container. The element itself is formatted as an inline element, but you can apply height and width values	
+inline-flex	Displays an element as an inline-level flex container	
+inline-grid	Displays an element as an inline-level grid container	
+inline-table	The element is displayed as an inline-level table	
+list-item	Let the element behave like a <li> element	
+run-in	Displays an element as either block or inline, depending on context	
+table	Let the element behave like a <table> element	
+table-caption	Let the element behave like a <caption> element	
+table-column-group	Let the element behave like a <colgroup> element	
+table-header-group	Let the element behave like a <thead> element	
+table-footer-group	Let the element behave like a <tfoot> element	
+table-row-group	Let the element behave like a <tbody> element	
+table-cell	Let the element behave like a <td> element	
+table-column	Let the element behave like a <col> element	
+table-row	Let the element behave like a <tr> element	
+none	The element is completely removed	
+initial	Sets this property to its default value. Read about initial	
+inherit
+
+overflow: ;
+visible - Default. The overflow is not clipped. The content renders outside the element's box
+hidden - The overflow is clipped, and the rest of the content will be invisible
+scroll - The overflow is clipped, and a scrollbar is added to see the rest of the content
+auto - Similar to scroll, but it adds scrollbars only when necessary
+
+overflow	Specifies what happens if content overflows an element's box
+overflow-anchor	Makes it possible to turn off scroll anchoring
+overflow-x	Specifies what to do with the left/right edges of the content if it overflows the element's content area
+overflow-y	Specifies what to do with the top/bottom edges of the content if it overflows the element's content area
+div {
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  overflow-y: scroll; /* Add vertical scrollbar */
+}
+overflow-wrap	Specifies whether or not the browser can break lines with long words, if they overflow its container
+
+letter-spacing: normal;
+
+/* <length> values */
+letter-spacing: 0.3em;
+letter-spacing: 3px;
+letter-spacing: 0.3px;
+
+/* Global values */
+letter-spacing: inherit;
+letter-spacing: initial;
+letter-spacing: revert;
+letter-spacing: revert-layer;
+letter-spacing: unset;
+
+/* Keyword value */
+word-spacing: normal;
+
+/* <length> values */
+word-spacing: 3px;
+word-spacing: 0.3em;
+
+/* Global values */
+word-spacing: inherit;
+word-spacing: initial;
+word-spacing: revert;
+word-spacing: revert-layer;
+word-spacing: unset;
+
+opacity: 0.9;
+opacity: 90%;
+
+/* Global values */
+opacity: inherit;
+opacity: initial;
+opacity: revert;
+opacity: revert-layer;
+opacity: unset;
+
+/* Apply to 1 property */
+/* property name | duration */
+transition: margin-right 4s;
+
+/* property name | duration | delay */
+transition: margin-right 4s 1s;
+
+/* property name | duration | easing function */
+transition: margin-right 4s ease-in-out;
+
+/* property name | duration | easing function | delay */
+transition: margin-right 4s ease-in-out 1s;
+
+/* property name | duration | behavior */
+transition: display 4s allow-discrete;
+
+/* Apply to 2 properties */
+transition:
+  margin-right 4s,
+  color 1s;
+
+/* Apply to all changed properties */
+transition: all 0.5s ease-out allow-discrete;
+transition: 200ms linear 50ms;
+
+/* Global values */
+transition: inherit;
+transition: initial;
+transition: revert;
+transition: revert-layer;
+transition: unset;
+
+/* Keyword value */
+line-height: normal;
+
+/* Unitless values: use this number multiplied
+by the element's font size */
+line-height: 3.5;
+
+/* <length> values */
+line-height: 3em;
+
+/* <percentage> values */
+line-height: 34%;
+
+/* Global values */
+line-height: inherit;
+line-height: initial;
+line-height: revert;
+line-height: revert-layer;
+line-height: unset;
+
+/* Keyword values */
+text-transform: none;
+text-transform: capitalize;
+text-transform: uppercase;
+text-transform: lowercase;
+text-transform: full-width;
+text-transform: full-size-kana;
+text-transform: math-auto;
+
+/* Global values */
+text-transform: inherit;
+text-transform: initial;
+text-transform: revert;
+text-transform: revert-layer;
+text-transform: unset;
+
+/*Dla paragrafu (akapitu): przed każdym paragrafem wstawiany jest tekst o treści „STATUS: ”*/
+  content: "STATUS: ";
+ .class::before {
+  content: '🎮 ';
+}
+
+
+//keyframes
+#miniatury img {
+	animation: miniaturyAnimacja 4s;
+	padding-left: 50px;
+	}
+	
+/* Animacja miniatur */
+@keyframes miniaturyAnimacja {
+	from {
+	 padding-left: 50px;
+	}
+	to {
+	 padding-left: 0px;
+	 }}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes identifier {
+  0% {
+    top: 0;
+    left: 0;
+  }
+  30% {
+    top: 50px;
+  }
+  68%,
+  72% {
+    left: 50px;
+  }
+  100% {
+    top: 100px;
+    left: 100%;
+  }
+}

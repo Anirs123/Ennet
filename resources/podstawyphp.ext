@@ -1,0 +1,190 @@
+<!-- PHP -->
+    <!-- Wyświetlanie tekstu -->
+    <?php
+    echo "Witaj, świecie!";
+    ?>
+
+    <!-- Zmienne -->
+    <?php
+    $imie = "Jan";
+    $wiek = 25;
+    echo "Imię: " . $imie . ", Wiek: " . $wiek;
+    ?>
+
+    <!-- Tablice -->
+    <?php
+    $owoce = array("Jabłko", "Banana", "Pomarańcza");
+    echo $owoce[0]; // Wyświetli "Jabłko"
+    ?>
+
+    <!-- Pętle -->
+        <!-- pętla for -->
+    <?php
+    for ($i = 0; $i < 5; $i++) {
+        echo "Liczba: " . $i . "<br>";
+    }
+    ?>
+
+        <!-- pętla foreach -->
+    <?php
+    $owoce = array("Jabłko", "Banana", "Pomarańcza");
+    foreach ($owoce as $owoc) {
+        echo $owoc . "<br>";
+    }
+    ?>
+
+    <!-- Instrukcje warunkowe -->
+        <!-- Instrukcja if else -->
+    <?php
+    $wiek = 18;
+    if ($wiek >= 18) {
+        echo "Jesteś pełnoletni.";
+    } else {
+        echo "Jesteś niepełnoletni.";
+    }
+    ?>
+
+        <!-- Instrukcja If else if else -->
+    <?php
+    $wiek = 20;
+    if ($wiek < 18) {
+        echo "Jesteś niepełnoletni.";
+    } elseif ($wiek >= 18 && $wiek < 21) {
+        echo "Jesteś młodym dorosłym.";
+    } else {
+        echo "Jesteś dorosłym.";
+    }
+    ?>
+
+        <!-- Instrukcja Switch -->
+    <?php
+    $kolor = "czerwony";
+    switch ($kolor) {
+        case "czerwony":
+            echo "Kolor to czerwony.";
+            break;
+        case "zielony":
+            echo "Kolor to zielony.";
+            break;
+        case "niebieski":
+            echo "Kolor to niebieski.";
+            break;
+        default:
+            echo "Nieznany kolor.";
+    }
+    ?>
+
+        <!-- Instrukcja ternary -->
+    <?php
+    $wiek = 20;
+    $status = ($wiek >= 18) ? "pełnoletni" : "niepełnoletni";
+    echo "Status: " . $status;
+    ?>
+
+        <!-- Instrukcja null coalescing -->
+    <?php
+    $imie = $_GET['imie'] ?? 'Gość';
+    echo "Witaj, " . $imie;
+    ?>
+        
+    <!-- Funkcje -->
+    <?php
+    function powitanie($imie) {
+        return "Witaj, " . $imie . "!";
+    }
+    echo powitanie("Jan");
+    ?>
+
+    <!-- Połączenie z bazą MYSQL -->
+    <?php
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "moja_baza_danych";
+    
+    // Tworzenie połączenia
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    
+    // Sprawdzanie połączenia
+    if ($conn->connect_error) {
+        die("Połączenie nieudane: " . $conn->connect_error);
+    }
+    echo "Połączenie udane";
+    ?>
+    
+    <!-- Funkcja htmlspecialchars -->
+    Funkcja htmlspecialchars w PHP jest używana do konwersji specjalnych znaków w ciągach znaków na ich odpowiedniki HTML. 
+    Przykład: znaki specjalne, takie jak <, >, &, czy ", funkcja htmlspecialchars zamieni je na odpowiednie encje HTML:
+    < zostanie zamienione na &lt;
+    > zostanie zamienione na &gt;
+    & zostanie zamienione na &amp;
+    " zostanie zamienione na &quot;
+
+    <!-- Operatory w php -->
+<!-- 1. Operatory arytmetyczne -->
+    +	Dodawanie	$a + $b	Suma $a i $b
+    -	Odejmowanie	$a - $b	Różnica $a i $b
+    *	Mnożenie	$a * $b	Iloczyn $a i $b
+    /	Dzielenie	$a / $b	Iloraz $a i $b
+    %	Reszta z dzielenia	$a % $b	Reszta z dzielenia $a przez $b
+
+    $a = 10;
+    $b = 3;
+    echo $a % $b; // Wynik: 1
+<!-- 2. Operatory przypisania -->
+    =	Przypisanie	$a = $b	$a otrzymuje wartość $b
+    +=	Dodanie i przypisanie	$a += $b	$a = $a + $b
+    -=	Odjęcie i przypisanie	$a -= $b	$a = $a - $b
+    *=	Mnożenie i przypisanie	$a *= $b	$a = $a * $b
+    /=	Dzielenie i przypisanie	$a /= $b	$a = $a / $b
+    %=	Modulo i przypisanie	$a %= $b	$a = $a % $b
+
+    $a = 5;
+    $a += 3; // $a = $a + 3
+    echo $a; // Wynik: 8
+<!-- 3. Operatory porównania -->
+    ==	Równość	$a == $b	true jeśli $a jest równe $b
+    ===	Identyczność	$a === $b	true jeśli $a jest równe $b i tego samego typu
+    !=	Różne	$a != $b	true jeśli $a nie jest równe $b
+    !==	Nieidentyczność	$a !== $b	true jeśli $a nie jest równe $b lub jest innego typu
+    <	Mniejsze	$a < $b	true jeśli $a jest mniejsze od $b
+    >	Większe	$a > $b	true jeśli $a jest większe od $b
+    <=	Mniejsze lub równe	$a <= $b	true jeśli $a jest mniejsze lub równe $b
+    >=	Większe lub równe	$a >= $b	true jeśli $a jest większe lub równe $b
+
+    $a = 5;
+    $b = "5";
+
+    echo $a == $b;  // Wynik: true
+    echo $a === $b; // Wynik: false (różne typy)
+<!-- 4. Operatory logiczne -->
+    &&	AND (i)	$a && $b	true jeśli oba są true
+    ||	OR (lub) $a || $b
+    !	NOT (zaprzeczenie)	!$a	true jeśli $a jest false
+
+    $a = true;
+    $b = false;
+
+    echo $a && $b; // Wynik: false
+    echo $a || $b; // Wynik: true
+    echo !$a;      // Wynik: false
+<!-- 5. Operatory inkrementacji i dekrementacji -->
+    ++$a	Preinkrementacja	$a = 5; ++$a;	$a wynosi 6 przed użyciem
+    $a++	Postinkrementacja	$a = 5; $a++;	$a wynosi 6 po użyciu
+    --$a	Predekrementacja	$a = 5; --$a;	$a wynosi 4 przed użyciem
+    $a--	Postdekrementacja	$a = 5; $a--;	$a wynosi 4 po użyciu
+
+    $a = 10;
+    echo ++$a; // Wynik: 11
+    echo $a--; // Wynik: 11
+    echo $a;   // Wynik: 10
+<!-- 6. Operatory łańcuchowe (dla stringów) -->
+    .	Konkatenacja	$a . $b	Łączy $a i $b
+    .=	Konkatenacja z przypisaniem	$a .= $b	Łączy $b z $a i przypisuje wynik do $a
+
+    $a = "Hello";
+    $b = " World";
+
+    echo $a . $b;  // Wynik: Hello World
+    $a .= $b;
+    echo $a;       // Wynik: Hello World

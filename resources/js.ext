@@ -1,0 +1,304 @@
+<!-- JS -->
+    <!-- Pobieranie danych z inputów i wyświetlanie ich w postaci listy oraz obliczanie -->
+    <form id="formularz">
+        <label for="liczba1">Liczba 1:</label>
+        <input type="number" id="liczba1" name="liczba1" required><br><br>
+        <label for="liczba2">Liczba 2:</label>
+        <input type="number" id="liczba2" name="liczba2" required><br><br>
+        <button type="button" onclick="oblicz()">Oblicz</button>
+    </form>
+
+    <h2>Podane liczby:</h2>
+    <ul id="lista"></ul>
+
+    <h2>Wynik:</h2>
+    <div id="wynik"></div>
+
+    <script>
+        function oblicz() {
+            // Pobieranie wartości z inputów
+            let liczba1 = document.getElementById('liczba1').value;
+            let liczba2 = document.getElementById('liczba2').value;
+
+            // Wyświetlanie liczb w postaci listy
+            let lista = document.getElementById('lista');
+            lista.innerHTML = '';
+            lista.innerHTML += '<li>Liczba 1: ' + liczba1 + '</li>';
+            lista.innerHTML += '<li>Liczba 2: ' + liczba2 + '</li>';
+
+            // Obliczanie sumy
+            let suma = parseFloat(liczba1) + parseFloat(liczba2);
+
+            // Wyświetlanie wyniku
+            let wynik = document.getElementById('wynik');
+            wynik.innerHTML = 'Suma: ' + suma;
+        }
+    </script>
+
+    <!-- Wybieranie z listy danego typu i obliczanie go -->
+    const typ = typ.value;
+    const cena = cena.value;
+    // alert(typ + "+" + cena);
+    if(typ == 1){
+        var koszt = 4;
+    }
+    else if(typ == 2){
+        var koszt = 3.5;
+    }
+    else{
+        var koszt = 0;
+    }
+    const wynik = koszt * cena;
+    wyswietl.innerHTML = `koszt paliwa: ${wynik} zł`;
+
+    <!-- Generowanie ciągu arytmetycznego -->
+    generuj.onclick = () => {
+        let la = parseInt(a.value);
+        let lr = parseInt(r.value);
+        let ln = parseInt(n.value);
+        let ciag = 'ciag arytmetycnzy zawiera wyrazy: ';
+
+        start = la;
+        for(i = 0; i < ln; i++){
+            ciag += start + ", ";
+            start += lr;
+        }
+        odp.innerHTML = ciag;
+    }
+
+    <!-- Stylowanie przy użyciu javascript -->
+    <p>Poznaj rozmiar tekstu w procentach:</p>
+    <input type="number" id="procent" />%
+    <select id="styl">
+        <option value="normal">prosty</option>
+        <option value="italic">kursywa</option>
+    </select>
+    <p>Jakim kolorem sformatować tekst? Wybierz przycisk</p>
+    <button type="button" id="r" onclick="f('red')"></button>
+    <button type="button" id="g" onclick="f('green')"></button>
+    <button type="button" id="b" onclick="f('blue')"></button>
+    <p id="wynik">To jest przykład paragrafu, który może być dowolnie formatowany przez JavaScript</p>
+    <script>
+    function f(color) {
+        let size = document.getElementById("procent").value;
+        let styl = document.getElementById("styl").value;
+        let wynik = document.getElementById("wynik");
+        wynik.style.color = color;
+        wynik.style.fontSize = size + "%";
+        wynik.style.fontStyle = styl;
+    }
+    </script>
+
+    <!-- Po najechaniu na element pokazuje się tekst -->
+    <style>
+        .container {
+            display: inline-block;
+        }
+        .price {
+            display: none;
+        }
+    </style>
+    <div class="container">
+        <img src="obrazek1.jpg" alt="Obrazek 1" class="image" data-price="100 zł">
+        <div class="price">100 zł</div>
+    </div>
+    <div class="container">
+        <img src="obrazek2.jpg" alt="Obrazek 2" class="image" data-price="200 zł">
+        <div class="price">200 zł</div>
+    </div>
+    <div class="container">
+        <img src="obrazek3.jpg" alt="Obrazek 3" class="image" data-price="300 zł">
+        <div class="price">300 zł</div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.container').forEach(container => {
+            const image = container.querySelector('.image');
+            const price = container.querySelector('.price');
+
+            image.addEventListener('mouseover', () => {
+                price.style.display = 'block';
+            });
+
+            image.addEventListener('mouseout', () => {
+                price.style.display = 'none';
+            });
+        });
+    </script>
+
+    <!-- Stylowanie calego prawego bloku strony -->
+	<button type="button" id="indigo" onclick="kolorBg('Indigo')">Indigo</button>
+	<button type="button" id="steelblue" onclick="kolorBg('SteelBlue')">SteelBlue</button>
+	<button type="button" id="olive" onclick="kolorBg('Olive')">Olive</button>
+	<p>Podaj kolor czcionki</p>
+	<select id="kolorC" onchange="kolorFont();">
+        <option value="White">White</button>
+        <option value="Tan">Tan</option>
+        <option value="Bisque">Bisque</option>
+        <option value="Plum">Plum</option>
+	</select>
+	<p>Podaj rozmiar czcionki w procentaach, np. 200%</p>
+	<input type="number" id="rozmiar" value="100" onblur="rozmiarFont()" />
+	<p>Czy rysunek ma mieć ramkę?</p>
+	<label>
+	<input type="checkbox" id="ramka" onchange="ramka()" checked />Rysuj ramkę</label>
+    <p>Jaki jest typ punktora listy?</p>
+	<label>
+	<input type="radio" name="punktor" onchange="punktor('disc')" checked />dysk<br/></label>
+	<label>
+	<input type="radio" name="punktor" onchange="punktor('square')" />kwadrat<br/></label>
+	<label>
+	<input type="radio" name="punktor" onchange="punktor('circle')" />okrąg<br/></label>
+	<div id="prawy">
+	    <img src="gibraltar.jpg" alt="Gibraltar" id="obraz" />
+	    <ul id="lista">
+		    <li>element 1</li>
+		    <li>element 2</li>
+		    <li>element 3</li>
+	    </ul>
+	    <p>Lorem ipsum</p>
+	</div>
+    <script>
+    function kolorBg(kolor) {
+        let prawy = document.getElementById("prawy");
+        prawy.style.background = kolor;
+    }
+    function kolorFont() {
+        let prawy = document.getElementById("prawy");
+        let kolor = document.getElementById("kolorC");
+        prawy.style.color = kolor.value;
+    }
+    function rozmiarFont() {
+        let prawy = document.getElementById("prawy");
+        let rozmiar = document.getElementById("rozmiar").value;
+        prawy.style = "font-size: " + rozmiar + "%";
+    }
+    function ramka() {
+        let obraz = document.getElementById("obraz");
+        let czyRamka = document.getElementById("ramka").checked;
+        if(czyRamka) {
+            obraz.style.border = "1px solid white";
+        } else obraz.style.border = "none";
+    }
+    function punktor(typ) {
+        let lista = document.getElementById("lista");
+        lista.style.listStyleType = typ;
+    }
+    </script>
+
+    <!-- aktualizowanie danych i zmienianie właściwości divów -->
+    <tr>
+        <td class='produkt'>Skrętka U/UTP drut</td>
+        <td>metr</td>
+        <td class='ilosc'>20</td>
+        <td><button class='aktualizuj'>Aktualizuj</button></td>
+        <td><button class='zamow'>Zamów</button></td>
+    </tr>
+    <tr>
+        <td class='produkt'>Skrętka U/UTP linka</td>
+        <td>metr</td>
+        <td class='ilosc'>2</td>
+        <td><button class='aktualizuj'>Aktualizuj</button></td>
+        <td><button class='zamow'>Zamów</button></td></button></td>
+    </tr>
+    <tr>
+        <td class='produkt'>Wtyki 8P8C</td>
+        <td>sztuki</td>
+        <td class='ilosc'>10</td>
+        <td><button class='aktualizuj'>Aktualizuj</button></td>
+        <td><button class='zamow'>Zamów</button></td>
+    </tr>
+    <tr>
+        <td class='produkt'>Moduły Keystone</td>
+        <td>sztuki</td>
+        <td class='ilosc'>30</td>
+        <td><button class='aktualizuj'>Aktualizuj</button></td>
+        <td><button class='zamow'>Zamów</button></td>
+    </tr>
+    <script>
+    const iloscProduktow = document.querySelectorAll('.ilosc')
+    const nazwaProduktow = document.querySelectorAll('.produkt')
+    const aktualizujPrzycisk = document.querySelectorAll('.aktualizuj')
+    const zamowPrzycisk = document.querySelectorAll('.zamow')
+    let idZamowienia = 0
+
+    function sprawdz() {
+        iloscProduktow.forEach((produkt) => {
+            if (produkt.innerHTML == 0) {
+                produkt.style = 'background-color: red;'
+            }
+            if (produkt.innerHTML >= 1 && produkt.innerHTML <= 5) {
+                produkt.style = 'background-color: yellow;'
+            }
+            if (produkt.innerHTML > 5) {
+                produkt.style = 'background-color: Honeydew;'
+            }
+        })
+    }
+    aktualizujPrzycisk.forEach((przycisk, i) => {
+        przycisk.addEventListener('click', () => {
+            const nowaIlosc = prompt('Podaj nową ilość:')
+            iloscProduktow[i].innerHTML = nowaIlosc
+            sprawdz()
+        })
+    })
+    zamowPrzycisk.forEach((przycisk, i) => {
+        przycisk.addEventListener('click', () => {
+            alert('Zamówienie nr: ' + idZamowienia + ' Produkt: ' + nazwaProduktow[i].innerHTML)
+            idZamowienia++
+        })
+    })
+    sprawdz();
+    </script>
+
+    <!-- Galeria obrazów zmiana obrazu po kliknięciu -->
+    <button type="button" onclick="prev()">prev</button>
+    <img id="glowne" src="1.jpg" alt="galeria"/>
+    <button type="button" onclick="next()">next</button>
+    <img src="1.jpg" alt="miniatura" onclick="zamiana('1.jpg',1)"/>
+    <img src="2.jpg" alt="miniatura" onclick="zamiana('2.jpg',2)"/>
+    <img src="3.jpg" alt="miniatura" onclick="zamiana('3.jpg',3)"/>
+    <img src="4.jpg" alt="miniatura" onclick="zamiana('4.jpg',4)"/>
+    <img src="5.jpg" alt="miniatura" onclick="zamiana('5.jpg',5)"/>
+    <script>
+    let nr = 1
+    function zamiana(src, numer) {
+        let glowne = document.getElementById('glowne')
+        glowne.src = src
+        nr = numer
+
+    }
+    function prev() {
+        let aktualne = document.getElementById('glowne')
+        nr--
+        if (nr == 0) nr = 5
+        if (nr == 1) aktualne.src = '1.jpg'
+        if (nr == 2) aktualne.src = '2.jpg'
+        if (nr == 3) aktualne.src = '3.jpg'
+        if (nr == 4) aktualne.src = '4.jpg'
+        if (nr == 5) aktualne.src = '5.jpg'
+    }
+    function next() {
+        let aktualne = document.getElementById('glowne')
+        nr++
+        if (nr == 6) nr = 1
+        if (nr == 1) aktualne.src = '1.jpg'
+        if (nr == 2) aktualne.src = '2.jpg'
+        if (nr == 3) aktualne.src = '3.jpg'
+        if (nr == 4) aktualne.src = '4.jpg'
+        if (nr == 5) aktualne.src = '5.jpg'
+    }
+    </script>
+
+    <!-- sprawdzanie czy jest zaznaczony checkbox -->
+    <input id="id" type="checkbox">Zapoznałam/em się z regulaminem
+    if(id.checked){
+        wynik.innerHTML = "<p>zaznaczono</p>";
+    }
+    else{
+        wynik.innerHTML = "<p>nie zaznaczono</p>";
+    }
+
+    <!-- Duże i małe litery toUpperCase i toLowerCase -->
+    let imiev = id.value.toUpperCase();
+    let imiev = id.value.toLowerCase();

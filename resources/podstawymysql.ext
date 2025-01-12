@@ -1,0 +1,622 @@
+<!-- MYSQL -->
+
+1. Tworzenie bazy danych i tabel
+<!-- Polecenie: CREATE DATABASE -->
+
+Tworzy nową bazę danych.
+    <!-- Przykład: -->
+
+CREATE DATABASE School;
+
+<!-- Polecenie: CREATE TABLE -->
+
+Tworzy nową tabelę w bazie danych.
+<!-- Przykład: -->
+
+USE School;
+
+CREATE TABLE Students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    age INT,
+    class VARCHAR(10)
+);
+
+2. Wstawianie danych
+<!-- Polecenie: INSERT INTO -->
+
+Wstawia nowe rekordy do tabeli.
+<!-- Przykład: -->
+
+INSERT INTO Students (name, age, class) VALUES 
+('Alice', 14, '8A'),
+('Bob', 15, '9B'),
+('Charlie', 13, '7C');
+
+3. Pobieranie danych
+<!-- Polecenie: SELECT -->
+
+Służy do wyświetlania danych z tabel.
+<!-- Przykład: -->
+
+    <!-- Wyświetlenie wszystkich kolumn: -->
+
+SELECT * FROM Students;
+
+Wyświetlenie wybranych kolumn:
+
+SELECT name, age FROM Students;
+
+Filtrowanie danych z warunkiem WHERE:
+
+    SELECT * FROM Students WHERE age > 13;
+
+Dodatkowe opcje:
+
+    <!-- Sortowanie: -->
+
+SELECT * FROM Students ORDER BY age DESC; <!-- Od najwyzszego do najmniejszego -->
+SELECT * FROM Students ORDER BY age ASC; <!-- Od najmniejszego do najwiekszego -->
+    <!-- Zliczanie rekordów, Wyświetlanie ilości rekordów w cyfrze Polecenie: COUNT -->
+    
+        <!-- Przykład: -->
+    
+    Policz wszystkich pracowników w tabeli:
+    
+    SELECT COUNT(*) AS total_employees 
+    FROM Employees;
+    
+    Policz pracowników w dziale IT:
+    
+    SELECT COUNT(*) AS it_employees 
+    FROM Employees 
+    WHERE dept_id = 1;
+
+    <!-- Grupowanie: -->
+
+SELECT class, COUNT(*) AS student_count 
+FROM Students 
+GROUP BY class;
+
+4. Aktualizacja danych
+<!-- Polecenie: UPDATE -->
+
+Modyfikuje istniejące rekordy w tabeli.
+<!-- Przykład: -->
+
+UPDATE Students 
+SET age = 16 
+WHERE name = 'Bob';
+
+5. Usuwanie danych
+<!-- Polecenie: DELETE -->
+
+Usuwa rekordy z tabeli.
+<!-- Przykład: -->
+
+DELETE FROM Students 
+WHERE age < 14;
+
+6. Usuwanie tabeli lub bazy danych
+<!-- Polecenie: DROP TABLE -->
+
+Usuwa tabelę (łącznie z jej strukturą).
+<!-- Przykład: -->
+
+DROP TABLE Students;
+
+<!-- Polecenie: DROP DATABASE -->
+
+Usuwa całą bazę danych.
+<!-- Przykład: -->
+
+DROP DATABASE School;
+
+7. Modyfikowanie tabeli
+<!-- Polecenie: ALTER TABLE -->
+
+Służy do zmiany struktury tabeli.
+<!-- Przykład: -->
+
+    Dodanie nowej kolumny:
+
+ALTER TABLE Students 
+ADD email VARCHAR(100);
+
+Usunięcie kolumny:
+
+ALTER TABLE Students 
+DROP COLUMN email;
+
+Zmiana typu danych kolumny:
+
+    ALTER TABLE Students 
+    MODIFY age TINYINT;
+
+8. Tworzenie relacji
+<!-- Polecenie: FOREIGN KEY -->
+
+Tworzy relację między tabelami.
+<!-- Przykład: -->
+
+CREATE TABLE Classes (
+    class_id INT AUTO_INCREMENT PRIMARY KEY,
+    class_name VARCHAR(10)
+);
+
+ALTER TABLE Students 
+ADD class_id INT,
+ADD FOREIGN KEY (class_id) REFERENCES Classes(class_id);
+
+9. Łączenie tabel
+
+<!-- INNER JOIN -->
+
+Zwraca tylko rekordy, które mają dopasowanie w obu tabelach.
+    <!-- Przykład: -->
+Pobierz nazwy pracowników i ich działów.
+
+SELECT Employees.emp_name, Departments.dept_name 
+FROM Employees 
+INNER JOIN Departments 
+ON Employees.dept_id = Departments.dept_id;
+
+<!-- LEFT JOIN (LEFT OUTER JOIN) -->
+
+Zwraca wszystkie rekordy z lewej tabeli i tylko dopasowane rekordy z prawej tabeli.
+    <!-- Przykład: -->
+Pokaż wszystkich pracowników i ich działy, nawet jeśli nie są przypisani do żadnego działu.
+
+SELECT Employees.emp_name, Departments.dept_name 
+FROM Employees 
+LEFT JOIN Departments 
+ON Employees.dept_id = Departments.dept_id;
+
+<!-- RIGHT JOIN (RIGHT OUTER JOIN) -->
+
+Zwraca wszystkie rekordy z prawej tabeli i tylko dopasowane rekordy z lewej tabeli.
+    <!-- Przykład: -->
+Pokaż wszystkie działy i przypisanych do nich pracowników, nawet jeśli w dziale nie ma pracowników.
+
+SELECT Employees.emp_name, Departments.dept_name 
+FROM Employees 
+RIGHT JOIN Departments 
+ON Employees.dept_id = Departments.dept_id;
+
+<!-- FULL JOIN (Symulowany w MySQL) -->
+
+MySQL nie wspiera bezpośrednio FULL JOIN, ale można go zasymulować za pomocą UNION.
+<!-- Przykład: -->
+Pokaż wszystkich pracowników i działy, w tym te, które nie mają dopasowania.
+
+SELECT Employees.emp_name, Departments.dept_name 
+FROM Employees 
+LEFT JOIN Departments 
+ON Employees.dept_id = Departments.dept_id
+
+<!-- UNION -->
+
+SELECT Employees.emp_name, Departments.dept_name 
+FROM Employees 
+RIGHT JOIN Departments 
+ON Employees.dept_id = Departments.dept_id;
+
+<!-- CROSS JOIN (NEUTRAL JOIN) -->
+
+Zwraca każdy możliwy zestaw kombinacji rekordów z obu tabel (iloczyn kartezjański).
+    <!-- Przykład: -->
+Pokaż wszystkie możliwe kombinacje pracowników i działów.
+
+SELECT Employees.emp_name, Departments.dept_name 
+FROM Employees 
+CROSS JOIN Departments;
+
+10. Zarządzanie użytkownikami i prawami
+<!-- Tworzenie użytkownika -->
+
+<!-- Polecenie CREATE USER służy do tworzenia nowego użytkownika. -->
+    <!-- Przykład: -->
+
+CREATE USER 'janek'@'localhost' IDENTIFIED BY 'secure_password';
+
+Przyznawanie praw użytkownikowi
+
+<!-- Polecenie GRANT służy do przyznawania uprawnień. -->
+    <!-- Przykład: -->
+
+    Daj pełne prawa do konkretnej bazy danych:
+
+GRANT ALL PRIVILEGES ON School.* TO 'janek'@'localhost';
+
+Przyznaj tylko prawa do odczytu:
+
+    GRANT SELECT ON School.* TO 'janek'@'localhost';
+
+Odbieranie praw
+
+<!-- Polecenie REVOKE służy do odbierania uprawnień. -->
+    <!-- Przykład: -->
+
+REVOKE ALL PRIVILEGES ON School.* FROM 'janek'@'localhost';
+
+Wyświetlanie praw użytkownika
+
+<!-- Polecenie SHOW GRANTS wyświetla prawa przypisane do użytkownika. -->
+    <!-- Przykład: -->
+
+SHOW GRANTS FOR 'janek'@'localhost';
+
+Usuwanie użytkownika
+
+<!-- Polecenie DROP USER usuwa użytkownika. -->
+    <!-- Przykład: -->
+
+DROP USER 'janek'@'localhost';
+
+<!-- Przykład użycia JOIN i zarządzania użytkownikami -->
+
+    Tworzenie tabel i relacji:
+
+CREATE TABLE Projects (
+    project_id INT AUTO_INCREMENT PRIMARY KEY,
+    project_name VARCHAR(100),
+    dept_id INT,
+    FOREIGN KEY (dept_id) REFERENCES Departments(dept_id)
+);
+
+INSERT INTO Projects (project_name, dept_id) VALUES 
+('Website Redesign', 1),
+('Employee Onboarding', 2),
+('Sales Strategy', 3);
+
+<!-- Łączenie danych z trzech tabel: -->
+Pobierz listę pracowników wraz z ich działami i przypisanymi projektami.
+
+SELECT Employees.emp_name, Departments.dept_name, Projects.project_name
+FROM Employees
+INNER JOIN Departments ON Employees.dept_id = Departments.dept_id
+INNER JOIN Projects ON Departments.dept_id = Projects.dept_id;
+
+<!-- Tworzenie użytkownika i przyznanie mu praw: -->
+
+    Utwórz użytkownika i przyznaj mu prawa tylko do odczytu na bazie Company:
+
+CREATE USER 'student'@'localhost' IDENTIFIED BY 'exam_password';
+GRANT SELECT ON Company.* TO 'student'@'localhost';
+
+<!-- Sprawdź przyznane prawa: -->
+
+SHOW GRANTS FOR 'student'@'localhost';
+
+<!-- Przykładowa baza i operacje -->
+
+    Tworzenie bazy i tabel:
+
+CREATE DATABASE Company;
+USE Company;
+
+CREATE TABLE Departments (
+    dept_id INT AUTO_INCREMENT PRIMARY KEY,
+    dept_name VARCHAR(50) NOT NULL
+);
+<!-- tworzy tabele z kluczem obcym (Foreing KEY) -->
+CREATE TABLE Employees (
+    emp_id INT AUTO_INCREMENT PRIMARY KEY,
+    emp_name VARCHAR(50),
+    position VARCHAR(50),
+    salary DECIMAL(10, 2),
+    dept_id INT,
+    FOREIGN KEY (dept_id) REFERENCES Departments(dept_id)
+);
+
+Wstawianie danych:
+    <!-- dodaje to to jeden kolumny 3 nowe dane -->
+INSERT INTO Departments (dept_name) VALUES 
+('IT'),
+('HR'),
+('Sales');
+
+INSERT INTO Employees (emp_name, position, salary, dept_id) VALUES 
+('John Doe', 'Developer', 5000.00, 1),
+('Jane Smith', 'HR Specialist', 4000.00, 2),
+('Bob Brown', 'Sales Manager', 6000.00, 3);
+
+Pobieranie danych:
+
+    <!-- Wyświetlenie pracowników z działu IT: -->
+
+SELECT emp_name, position, salary 
+FROM Employees 
+WHERE dept_id = 1;
+
+Średnia pensja w każdym dziale:
+
+    SELECT d.dept_name, AVG(e.salary) AS avg_salary
+    FROM Employees e
+    JOIN Departments d ON e.dept_id = d.dept_id
+    GROUP BY d.dept_name;
+
+Aktualizacja danych:
+
+    Zmiana działu dla pracownika:
+
+    UPDATE Employees 
+    SET dept_id = 2 
+    WHERE emp_name = 'Bob Brown';
+
+Usuwanie danych:
+
+    Usunięcie działu:
+
+DELETE FROM Departments 
+WHERE dept_name = 'HR';
+
+13. DISTINCT
+    <!-- usuwania duplikatów i zwracania unikalnych wartości. -->
+SELECT DISTINCT dept_name 
+FROM Departments;
+
+14. MAX i MIN
+    <!-- Służy do znajdowania wartości maksymalnej i minimalnej. -->
+
+Najwyższa pensja w tabeli:
+
+SELECT MAX(salary) AS highest_salary 
+FROM Employees;
+
+Najniższa pensja w tabeli:
+
+SELECT MIN(salary) AS lowest_salary 
+FROM Employees;
+
+15. SUM
+    <!-- Służy do obliczania sumy wartości w kolumnie. -->
+
+Suma wszystkich pensji:
+
+SELECT SUM(salary) AS total_salary 
+FROM Employees;
+
+16. AVG
+    <!-- Służy do obliczania średniej wartości. -->
+
+Średnia pensja pracowników:
+
+SELECT AVG(salary) AS average_salary 
+FROM Employees;
+
+17. GROUP BY
+<!-- Służy do grupowania rekordów i stosowania funkcji agregujących na każdej grupie. -->
+
+    Policz pracowników w każdym dziale:
+
+SELECT dept_id, COUNT(*) AS employees_count 
+FROM Employees 
+GROUP BY dept_id;
+
+Średnia pensja w każdym dziale:
+
+    SELECT dept_id, AVG(salary) AS average_salary 
+    FROM Employees 
+    GROUP BY dept_id;
+
+18. HAVING
+<!-- Służy do filtrowania wyników grup po użyciu GROUP BY. -->
+
+    Wyświetl działy, w których średnia pensja jest większa niż 5000:
+
+    SELECT dept_id, AVG(salary) AS average_salary 
+    FROM Employees 
+    GROUP BY dept_id 
+    HAVING AVG(salary) > 5000;
+
+19. ORDER BY
+<!-- Służy do sortowania wyników zapytania. -->
+
+    Posortuj pracowników według pensji malejąco:
+
+SELECT emp_name, salary 
+FROM Employees 
+ORDER BY salary DESC;
+
+Posortuj działy alfabetycznie:
+
+    SELECT dept_name 
+    FROM Departments 
+    ORDER BY dept_name ASC;
+
+20. LIMIT
+<!-- Służy do ograniczenia liczby zwróconych rekordów. -->
+
+    Wyświetl 3 najlepiej zarabiających pracowników:
+
+    SELECT emp_name, salary 
+    FROM Employees 
+    ORDER BY salary DESC 
+    LIMIT 3;
+
+21. Łączenie różnych funkcji
+
+    Wyświetl najwyższą pensję w każdym dziale, posortowaną od największej:
+
+    SELECT dept_id, MAX(salary) AS highest_salary 
+    FROM Employees 
+    GROUP BY dept_id 
+    ORDER BY highest_salary DESC;
+
+22. Przykład kompleksowego zapytania
+
+Wyświetl unikalne nazwy działów, liczbę pracowników w każdym dziale, średnią pensję w dziale (tylko działy z co najmniej 2 pracownikami), posortowane według średniej pensji malejąco:
+
+SELECT d.dept_name, COUNT(e.emp_id) AS employee_count, AVG(e.salary) AS average_salary
+FROM Departments d
+LEFT JOIN Employees e ON d.dept_id = e.dept_id
+GROUP BY d.dept_id, d.dept_name
+HAVING COUNT(e.emp_id) >= 2
+ORDER BY average_salary DESC;
+
+<!-- TYPY DANYCH -->
+Typy liczbowe (całkowite i zmiennoprzecinkowe)
+
+TINYINT
+    Zakres: -128 do 127 (bez UNSIGNED), 0 do 255 (UNSIGNED)
+    Rozmiar: 1 bajt
+    Kiedy używać: Do przechowywania małych liczb, np. stanów logicznych (0/1), ocen w skali od 0 do 10.
+    Przykład:
+
+age TINYINT UNSIGNED;
+
+SMALLINT
+
+    Zakres: -32,768 do 32,767 (bez UNSIGNED), 0 do 65,535 (UNSIGNED)
+    Rozmiar: 2 bajty
+    Kiedy używać: Do liczb, które nie są bardzo duże, np. ilości produktów w magazynie.
+
+MEDIUMINT
+
+    Zakres: -8,388,608 do 8,388,607 (bez UNSIGNED), 0 do 16,777,215 (UNSIGNED)
+    Rozmiar: 3 bajty
+    Kiedy używać: Do przechowywania wartości średniej wielkości, np. ID użytkowników w systemach o dużej skali.
+
+INT lub INTEGER
+
+    Zakres: -2,147,483,648 do 2,147,483,647 (bez UNSIGNED), 0 do 4,294,967,295 (UNSIGNED)
+    Rozmiar: 4 bajty
+    Kiedy używać: Najczęściej używany typ liczbowy, np. do ID rekordów lub pól liczbowych w większości aplikacji.
+
+BIGINT
+
+    Zakres: -9,223,372,036,854,775,808 do 9,223,372,036,854,775,807 (bez UNSIGNED), 0 do 18,446,744,073,709,551,615 (UNSIGNED)
+    Rozmiar: 8 bajtów
+    Kiedy używać: Do bardzo dużych liczb, np. danych finansowych, liczników w systemach o ogromnej skali.
+
+DECIMAL lub NUMERIC
+
+    Zakres: Zależny od długości precyzji (DECIMAL(M, D))
+    Rozmiar: Zmienny, zależy od wartości M (liczba cyfr) i D (liczba cyfr po przecinku).
+    Kiedy używać: Do przechowywania wartości o dużej precyzji, np. cen, kwot w walutach.
+    Przykład:
+
+    price DECIMAL(10, 2);
+
+    FLOAT
+        Zakres: Około -3.402823466E+38 do 3.402823466E+38
+        Rozmiar: 4 bajty
+        Kiedy używać: Do przybliżonych obliczeń z mniejszą precyzją, np. wartości naukowych.
+
+    DOUBLE lub REAL
+        Zakres: Około -1.7976931348623157E+308 do 1.7976931348623157E+308
+        Rozmiar: 8 bajtów
+        Kiedy używać: Do danych zmiennoprzecinkowych o wysokiej precyzji, np. w naukach ścisłych.
+
+2. Typy znakowe (tekstowe)
+
+    CHAR(M)
+        Zakres: 0 do 255 znaków
+        Rozmiar: Zawsze przechowuje dokładnie M znaków (niewykorzystane miejsce jest uzupełniane spacjami).
+        Kiedy używać: Do przechowywania krótkich ciągów o stałej długości, np. kodów pocztowych.
+
+    VARCHAR(M)
+        Zakres: 0 do 65,535 znaków (w zależności od maksymalnej długości wiersza)
+        Rozmiar: Zmienny, w zależności od długości tekstu.
+        Kiedy używać: Do przechowywania tekstu o zmiennej długości, np. imion, nazwisk, adresów e-mail.
+
+    TEXT
+        Rodzaje:
+            TINYTEXT (255 znaków)
+            TEXT (65,535 znaków)
+            MEDIUMTEXT (16,777,215 znaków)
+            LONGTEXT (4,294,967,295 znaków)
+        Kiedy używać: Do przechowywania dużych bloków tekstu, np. opisów produktów, artykułów.
+
+3. Typy daty i czasu
+
+    DATE
+        Format: YYYY-MM-DD
+        Zakres: 1000-01-01 do 9999-12-31
+        Kiedy używać: Do przechowywania dat bez czasu, np. daty urodzin.
+
+    DATETIME
+        Format: YYYY-MM-DD HH:MM:SS
+        Zakres: 1000-01-01 00:00:00 do 9999-12-31 23:59:59
+        Kiedy używać: Do przechowywania daty i czasu, np. czasu rejestracji użytkownika.
+
+    TIMESTAMP
+        Format: YYYY-MM-DD HH:MM:SS
+        Zakres: 1970-01-01 00:00:01 UTC do 2038-01-19 03:14:07 UTC
+        Kiedy używać: Do przechowywania znaczników czasowych związanych z czasem systemowym.
+
+    TIME
+        Format: HH:MM:SS
+        Zakres: -838:59:59 do 838:59:59
+        Kiedy używać: Do przechowywania czasu, np. godzin otwarcia sklepu.
+
+    YEAR
+        Format: YYYY
+        Zakres: 1901 do 2155
+        Kiedy używać: Do przechowywania samych lat, np. roku produkcji.
+
+4. Typy binarne
+
+    BINARY(M) i VARBINARY(M)
+        Służy do przechowywania danych binarnych o stałej (BINARY) lub zmiennej (VARBINARY) długości.
+        Kiedy używać: Do przechowywania danych w postaci binarnej, np. haszy, identyfikatorów.
+
+    BLOB (Binary Large Object)
+        Rodzaje:
+            TINYBLOB (255 bajtów)
+            BLOB (65,535 bajtów)
+            MEDIUMBLOB (16,777,215 bajtów)
+            LONGBLOB (4,294,967,295 bajtów)
+        Kiedy używać: Do przechowywania dużych obiektów binarnych, np. obrazów, dokumentów.
+
+5. Typy przestrzenne (GIS)
+
+    GEOMETRY
+        Przechowuje dowolny typ danych przestrzennych (punkt, linia, wielokąt).
+
+    POINT
+        Przechowuje współrzędne punktu w przestrzeni.
+
+    LINESTRING
+        Przechowuje linię złożoną z punktów.
+
+    POLYGON
+        Przechowuje wielokąt złożony z linii zamkniętych.
+
+    Kiedy używać: Do przechowywania danych geograficznych, np. lokalizacji na mapach.
+
+6. Typ ENUM i SET
+    ENUM (ang. enumeration) to typ danych w MySQL, który pozwala na przechowywanie 
+    jednej wartości z predefiniowanego zestawu opcji. Jest to przydatne w sytuacjach, 
+    gdy dane mogą przyjmować tylko określone wartości.
+
+    ENUM
+        Lista predefiniowanych wartości (można wybrać tylko jedną).
+        Przykład:
+
+    gender ENUM('male', 'female', 'other');
+    <!-- Kolumna gender pozwala na zapisanie tylko jednej z trzech wartości: 'male', 'female', 'other'. -->
+    CREATE TABLE users (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(50),
+        gender ENUM('male', 'female', 'other')
+    );
+
+    SELECT * FROM users WHERE gender = 'male';
+
+    SET
+        Lista predefiniowanych wartości (można wybrać wiele).
+
+<!-- UNIQUE służy do zapewnienia, że wartości w danej kolumnie są unikalne -->
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) UNIQUE
+);    
+<!-- DOUBLE służy do przechowywania liczb zmiennoprzecinkowych o podwójnej precyzji. -->
+CREATE TABLE products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    price DOUBLE(10, 2)
+);

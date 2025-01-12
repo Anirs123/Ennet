@@ -1,0 +1,63 @@
+<!-- SQL -->
+    <!-- //Wyświetlanie z tabeli z warunkiem -->
+    SELECT nazwa, wystepowanie FROM Ryby WHERE styl_zycia = 1; 
+
+    <!-- //Wyświetlanie z tabeli z warunkiem mniejszości -->
+    SELECT Ryby_id, wymiar_ochronny FROM okres_ochronny WHERE wymiar_ochronny < 50;
+
+    <!-- //Wyświetlanie danych pomiędzy wartościami   -->
+    SELECT id, nazwisko FROM matematycy WHERE liczba_publikacji between 11 and 29;
+
+    <!-- //Wyświetlanie z warunkiem lub -->
+    SELECT akwen, wojewodztwo FROM `lowisko` WHERE rodzaj = 2 or rodzaj = 3;
+
+    <!-- //Wyświetlanie z warunkiem dodadkowykm -->
+    SELECT nazwa FROM `dania` WHERE typ="3" and cena < 15;
+
+    <!-- //Wyświetlanie bez powtarzania się danych z warunkiem i pomiędzy i dodatkowym warunkiem i nie jest puste -->
+    SELECT DISTINCT wpis FROM `zadania` WHERE dataZadania BETWEEN '2020-07-01' and '2020-07-07' and wpis != '';
+
+    <!-- //Wyświetlanie gdy zależy nam na jednej żeczy z całego ciągu znaków w dacie -->
+    SELECT dataZadania, wpis FROM `zadania` where dataZadania like '%-07-%';
+
+    <!-- //Wyświetlanie gdy zależy nam na jednej żeczy z całego ciągu znaków w wyrazie -->
+    SELECT miesiac, wpis from zadania where wpis like 'S%';
+
+    <!-- //Łączenie tabli w przypadku gdy dane się pokrywają ale nazwy kolumn juz nie  -->
+    SELECT nazwa, akwen FROM ryby INNER JOIN lowisko ON ryby.id = lowisko.Ryby_id WHERE lowisko.rodzaj = 2;
+    SELECT imie, nazwisko FROM karty_wedkarskie k JOIN zawody_wedkarskie z ON z.Karty_wedkarskie_id = k.id WHERE z.id = 3;
+
+    <!-- //Sumuje (Dodaje) liczbe publikacji pod warunkiem -->
+    SELECT SUM(liczba_publikacji) FROM matematycy WHERE rok_urodzenia > 1750;
+
+    <!-- //Dodawanie kolumny -->
+    ALTER TABLE ryby ADD COLUMN (dobowy_limit INT);
+
+    <!-- //Nadawanie hasła użytkownikowi gdy istnieje w bazie danych  -->
+    ALTER USER 'anna'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Anna4!';
+
+    <!-- //Aktualizowanie danych pod daną kolumne -->
+    UPDATE samochody SET stan = 'dobry' WHERE rocznik = 2003;
+
+    <!-- //Aktualizowanie danych z warunkiem -->
+    UPDATE `karty_wedkarskie` SET `punkty` = '10' WHERE `karty_wedkarskie`.`id` = 2;
+
+    <!-- //Tworzenie użytkowanika z hasłem -->
+    CREATE USER 'andrzej'@'localhost' IDENTIFIED BY 'andrzej1@';
+
+    <!-- //Tworzenie tabeli  -->
+    CREATE TABLE publikacje (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, tytul TEXT NOT NULL, rok INT);
+
+    <!-- //Nadawanie uprawnień dla danej bazy  -->
+    GRANT SELECT, UPDATE ON moja_baza.samochody TO 'andrzej'@'localhost';
+
+    <!-- //Nadawanie uprawnień dla wszytkich baz  -->
+    GRANT SELECT, UPDATE ON *.samochody TO 'andrzej'@'localhost';
+
+    <!-- //Wstawianie danych w poszczególne miejsca -->
+    INSERT INTO zawody_wedkarskie VALUES (null, 2, 4, '2018-09-28', 'Tomasz Kowal');
+
+    <!-- //Wstawianie danych w poszczególne tabele  -->
+    INSERT INTO `rezerwacje` (`id`, `nr_stolika`, `data_rez`, `liczba_osob`, `telefon`) VALUES (NULL, '1', '2017-07-04', '4', '111222333');
+
+     
