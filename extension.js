@@ -20,8 +20,17 @@ function activate(context) {
         openFiles(context, files);
     });
 
+    // Komenda do zamykania wszystkich otwartych plików
+    let closeAllFiles = vscode.commands.registerCommand('extension.closeAllFiles', () => {
+        vscode.workspace.textDocuments.forEach(doc => {
+            vscode.window.showTextDocument(doc).then(() => {
+                vscode.commands.executeCommand('workbench.action.closeActiveEditor');
+            });
+        });
+    });
+
     // Rejestracja komend
-    context.subscriptions.push(runThreeFiles, runOneFile, runFourFiles);
+    context.subscriptions.push(runThreeFiles, runOneFile, runFourFiles, closeAllFiles);
 }
 
 // Funkcja do otwierania plików w edytorze

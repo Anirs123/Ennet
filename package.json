@@ -2,7 +2,7 @@
     "name": "ennet",
     "displayName": "Ennet+",
     "description": "Support [q,y,g] for compiling Emmet",
-    "version": "0.0.6",
+    "version": "0.0.8",
     "publisher": "Ennet",
     "engines": {
         "vscode": "^1.75.0"
@@ -11,7 +11,8 @@
     "activationEvents": [
         "onCommand:extension.runThreeFiles",
         "onCommand:extension.runOneFile",
-        "onCommand:extension.runFourFiles"
+        "onCommand:extension.runFourFiles",
+        "onCommand:extension.closeAllFiles"
     ],
     "main": "./extension.js",
     "scripts": {
@@ -30,6 +31,10 @@
             {
                 "command": "extension.runFourFiles",
                 "title": "Open Four Files"
+            },
+            {
+                "command": "extension.closeAllFiles",
+                "title": "Close All Files"
             }
         ],
         "keybindings": [
@@ -47,6 +52,11 @@
                 "command": "extension.runFourFiles",
                 "key": "ctrl+alt+y",
                 "mac": "cmd+alt+y"
+            },
+            {
+                "command": "extension.closeAllFiles",
+                "key": "ctrl+alt+w",
+                "mac": "cmd+alt+w"
             }
         ]
     }

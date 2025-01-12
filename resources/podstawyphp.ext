@@ -188,3 +188,83 @@
     echo $a . $b;  // Wynik: Hello World
     $a .= $b;
     echo $a;       // Wynik: Hello World
+
+
+<!-- Regex -->
+
+2. RegEx w PHP
+
+W PHP do używania RegEx służą funkcje:
+
+    preg_match: Dopasowuje pojedyncze wystąpienie.
+    preg_match_all: Dopasowuje wszystkie wystąpienia.
+    preg_replace: Podmienia tekst na podstawie wzorca.
+    preg_split: Dzieli tekst na części.
+
+Flagi w PHP
+
+    i: Ignorowanie wielkości liter.
+    m: Tryb wielowierszowy.
+    s: Kropka . dopasowuje znaki nowej linii.
+    u: Obsługa znaków Unicode.
+    x: Ignoruje białe znaki w RegEx dla lepszej czytelności.
+
+Przykłady w PHP
+Dopasowanie wzorca
+
+$text = "PHP jest fajny!";
+if (preg_match('/fajny/', $text)) {
+    echo "Znaleziono!";
+} else {
+    echo "Nie znaleziono.";
+}
+
+Znajdowanie wszystkich wystąpień
+
+$text = "kot, pies, kot";
+preg_match_all('/kot/', $text, $matches);
+print_r($matches[0]); // ["kot", "kot"]
+
+Podmienianie tekstu
+
+$text = "123-456-789";
+$result = preg_replace('/-/', ':', $text);
+echo $result; // "123:456:789"
+
+Ekstrakcja części tekstu
+
+$text = "Moje ID: 12345";
+preg_match('/ID:\s(\d+)/', $text, $matches);
+echo $matches[1]; // "12345"
+
+Grupy dopasowań
+
+$text = "2025-01-06";
+preg_match('/(\d{4})-(\d{2})-(\d{2})/', $text, $matches);
+echo $matches[1]; // "2025" (rok)
+echo $matches[2]; // "01" (miesiąc)
+echo $matches[3]; // "06" (dzień)
+
+Dziel tekst na części
+
+$text = "jabłko,banan,gruszka";
+$result = preg_split('/,/', $text);
+print_r($result); // ["jabłko", "banan", "gruszka"]
+
+Podstawowe wzorce RegEx
+Wzorzec	Opis
+\d	Cyfra (0-9).
+\w	Znak alfanumeryczny (litera, cyfra, podkreślnik).
+\s	Biały znak (spacja, tabulator, nowa linia).
+.	Dowolny znak (poza znakiem nowej linii).
+^	Początek tekstu lub linii.
+$	Koniec tekstu lub linii.
+[abc]	Jeden z podanych znaków: a, b lub c.
+[^abc]	Wszystko poza a, b, c.
+(abc)	Grupa.
+`a	b`
+a*	0 lub więcej wystąpień a.
+a+	1 lub więcej wystąpień a.
+a?	0 lub 1 wystąpienie a.
+a{3}	Dokładnie 3 wystąpienia a.
+a{3,5}	Od 3 do 5 wystąpień a.

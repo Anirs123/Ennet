@@ -421,3 +421,55 @@ body {
     position: sticky;
     top: 0;
 }
+
+<!-- regex -->
+1. RegEx w JavaScript
+
+W JavaScript RegEx można tworzyć na dwa sposoby:
+
+    Za pomocą literałów RegEx: /wzorzec/flagi
+    Za pomocą obiektu RegExp: new RegExp('wzorzec', 'flagi')
+
+Flagi w JavaScript
+
+    g: Globalne dopasowanie (znajduje wszystkie wystąpienia).
+    i: Ignorowanie wielkości liter.
+    m: Tryb wielowierszowy (wzorzec dopasowuje początek i koniec każdej linii).
+    s: Tryb "dotall" (kropka . dopasowuje również znaki nowej linii).
+    u: Obsługa znaków Unicode.
+    y: "Sticky" (dopasowanie musi zaczynać się od bieżącej pozycji).
+
+Przykłady w JavaScript
+Dopasowanie wzorca
+
+const text = "JavaScript jest super!";
+const regex = /super/;
+console.log(regex.test(text)); // true
+
+Znajdowanie wszystkich wystąpień
+
+const text = "kot, pies, kot";
+const regex = /kot/g;
+console.log(text.match(regex)); // ["kot", "kot"]
+
+Podmienianie tekstu
+
+const text = "123-456-789";
+const regex = /-/g;
+console.log(text.replace(regex, ":")); // "123:456:789"
+
+Ekstrakcja części tekstu
+
+const text = "Moje ID: 12345";
+const regex = /ID:\s(\d+)/;
+const match = text.match(regex);
+console.log(match[1]); // "12345"
+
+Grupy dopasowań
+
+const text = "2025-01-06";
+const regex = /(\d{4})-(\d{2})-(\d{2})/;
+const match = regex.exec(text);
+console.log(match[1]); // "2025" (rok)
+console.log(match[2]); // "01" (miesiąc)
+console.log(match[3]); // "06" (dzień)
