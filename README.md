@@ -6,3 +6,5 @@ Opening files by a shortcuts:
  - CTRL + ALT + Y -> Opening JS,PHP,MYSQL,CSS,HTML basics
  - CTRL + ALT + G -> Opening GIMP docs
  - CTRL + ALT + W -> CLOSE ALL OPENED DOCS FILES
+
+<a href="https://marketplace.visualstudio.com/items?itemName=Ennet.ennet">VSC Marketplace</a>
